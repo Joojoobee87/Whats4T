@@ -1,0 +1,9 @@
+.ingredients {
+    white-space: pre-wrap;
+    background-color: red;
+}
+
+.recipe-image {
+    max-height: 200px;
+    max-width: 300px;
+}
