@@ -21,9 +21,39 @@ def get_recipes():
 
 @app.route('/create_recipe')
 def create_recipe():
-    return render_template("createrecipe.html",
-                            recipes=mongo.db.recipes())
+    return render_template("createrecipe.html", 
+                            title="Create Recipe",
+                            recipes=mongo.db.recipes.find())
 
+
+@app.route('/insert_recipe', methods=['POST'])
+def insert_recipe():
+    new_recipe = {
+        'title': request.form.get('title'),
+        'ingredients': request.form.get('ingredients'),
+        'method': request.form.get('method'),
+        'images': request.form.get('images'),
+        'prep_time': request.form.get('prep_time'),
+        'cooking_time': request.form.get('cooking_time'),
+        'total_time': request.form.get('total_time'),
+        'tags': request.form.get('tags'),
+        'likes_count': " "
+    }
+    mongo.db.recipes.insert_one(new_recipe)
+    return redirect(url_for('get_recipes'))
+    
+@app.route('/insert_category', methods=['POST'])
+def insert_category():
+    category_doc = {'category_name': request.form.get('category_name')}
+    mongo.db.categories.insert_one(category_doc)
+    return redirect(url_for('get_categories'))
+
+
+
+@app.route('/selected_recipe')
+def selected_recipe():
+    return render_template("recipe.html",
+                            recipes=mongo.db.recipes.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
