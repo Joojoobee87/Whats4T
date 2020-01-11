@@ -41,19 +41,13 @@ def insert_recipe():
     }
     mongo.db.recipes.insert_one(new_recipe)
     return redirect(url_for('get_recipes'))
-    
-@app.route('/insert_category', methods=['POST'])
-def insert_category():
-    category_doc = {'category_name': request.form.get('category_name')}
-    mongo.db.categories.insert_one(category_doc)
-    return redirect(url_for('get_categories'))
 
 
+@app.route('/show_recipe/<recipe_id>')
+def show_recipe(recipe_id):
+    selected_recipe=mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    return render_template("showrecipe.html", recipes=selected_recipe)
 
-@app.route('/selected_recipe')
-def selected_recipe():
-    return render_template("recipe.html",
-                            recipes=mongo.db.recipes.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
