@@ -1,11 +1,27 @@
-{% extends 'base.html'%} {% block content %}
-<div class="row">
-    <div>
-        {% for recipe in recipes %}
-        <div> {{ recipe.title }} </div>
-        <p class="ingredients"> {{ recipe.ingredients }} </p>
-        <div> {{ recipe.method }}</div>
-        {% endfor %}
+{% extends 'base.html'%} 
+{% block content %}
+    {% for recipe in recipes %}
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-6 col-lg-6"> 
+                <img class="recipe-image" src="{{ recipe.image }}" alt="recipe image">
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <h2>{{ recipe.title }}
+                <p> {{ recipe.summary }} </p>
+            </div>
+            <div class="col-md-12 col-lg-12">
+                <span><i></i>{{ recipe.prep_time }}</span>
+                <span><i></i>{{ recipe.cooking_time }}</span>
+                <span><i></i>{{ recipe.total_time }}</span>
+                <span><i></i>{{ recipe.likes_count }}</span>
+            </div>
+            <div>
+                <button class="btn btn-success" type="submit"><a href="{{url_for('show_recipe', recipe_id=recipe._id)}}">Show</a></button>
+            </div>
+        </div>
     </div>
-</div>
+
+    {% endfor %}
+
 {% endblock %}
