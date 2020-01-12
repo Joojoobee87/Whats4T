@@ -28,6 +28,7 @@ def create_recipe():
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
+    total_time = request.form.get('prep_time') + request.form.get('cooking_time')
     new_recipe = {
         'title': request.form.get('title'),
         'ingredients': request.form.get('ingredients'),
@@ -35,7 +36,7 @@ def insert_recipe():
         'images': request.form.get('images'),
         'prep_time': request.form.get('prep_time'),
         'cooking_time': request.form.get('cooking_time'),
-        'total_time': request.form.get('total_time'),
+        'total_time': total_time,
         'tags': request.form.get('tags'),
         'likes_count': " "
     }
