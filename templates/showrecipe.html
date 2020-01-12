@@ -2,22 +2,30 @@
 
 {% block content %}
 
-    <h2>{{recipes.title}}this is text</h2>
-    <img class="recipe-image" src="{{ recipes.image }}" alt="recipe image">
-    <div>
-        <p>{{ recipes.summary }}</p>
+<div class="container show-recipe-container">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 show-recipe-image">
+            <img class="recipe-image" src="{{ recipes.image }}" alt="recipe image">
+        </div>
+        <div class="col-md-6 col-lg-6 show-recipe-summary">
+            <h1>{{recipes.title}}</h1>
+            <p>{{ recipes.summary }}</p>
+                <div>
+                    <i class="fas fa-user-clock"></i><span class="icon-label">Prep:</span><span class="icon-content">{{ recipes.prep_time }} mins</span>
+                    <i class="fas fa-stopwatch"></i><span class='icon-label'>Cook:</span><span class="icon-content">{{ recipes.cooking_time }} mins</span>
+                    <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipes.total_time }} mins</span>
+                    <i class="far fa-thumbs-up"></i><span class="icon-label">Likes:</span><span class="icon-content">{{ recipes.likes_count }}</span>
+                </div>
+        </div>
     </div>
-    <div>
-        <span><i></i>{{ recipes.prep_time }}</span>
-        <span><i></i>{{ recipes.cooking_time }}</span>
-        <span><i></i>{{ recipes.total_time }}</span>
-        <span><i></i>{{ recipes.likes_count }}</span>
-    </div>
-    <div class="accordion" id="accordionExample">
+</div>
+
+
+<div class="accordion" id="accordionExample">
     <div class="card">
         <div class="card-header" id="headingOne">
         <h2 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <button class="btn btn-link recipe-accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             Ingredients
             </button>
         </h2>
@@ -32,17 +40,29 @@
     <div class="card">
         <div class="card-header" id="headingTwo">
         <h2 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <button class="btn btn-link collapsed recipe-accordion-button" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             Method
             </button>
         </h2>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
         <div class="card-body">
-            {{ recipes.method }}
+            <p class="recipe-method">{{ recipes.method }}</p>
         </div>
         </div>
     </div>
+    </div>
+
+    <div class="container-advert">
+        <div class=row>
+            <div class="col-md-8 col-lg-8">
+                <img src="https://s7e3a.scene7.com/is/image/LakelandCamel/ovenmate-hero?$1250$" alt="advertising">
+                <div class="col-lg-6 col-md-6 advert-text">
+                    <h2>Restore your house to order this spring</h2>
+                    <span><a href="https://www.lakeland.co.uk/around-the-home/cleaning-products/">Shop all cleaning</a></span>
+                </div>
+            </div>
+        </div>
     </div>
             
 {% endblock %}
