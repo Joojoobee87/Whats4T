@@ -1,3 +1,8 @@
+body {
+    font-family: 'Catamaran', sans-serif;
+    background-color: #E4E6C3;
+}
+
 .ingredients {
     white-space: pre-wrap;
     background-color: red;
@@ -10,16 +15,35 @@
 }
 
 .recipe-image {
-    max-width: 100%;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.show-recipe {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .show-recipe-image {
     display: inline-block;
     position: relative;
+    padding: 0px;
+}
+
+.show-recipe-title {
+    padding: 10px 0px;
+    color: #56A3A6;
 }
 
 .show-recipe-summary {
     display: inline-block;
+    position: relative;
+}
+
+.show-recipe-icon {
+    display: block;
     position: relative;
 }
 
@@ -40,9 +64,15 @@
 
 /* -------- Advertising space ----------*/
 
-.container-advert {
+.advert-container {
     display: block;
     position: relative;
+    padding: 50px;
+}
+
+.advert-column {
+    text-align: center;
+    padding: 0px;
 }
 
 .advert-image {
@@ -52,9 +82,68 @@
 .advert-text {
     display: block;
     position: absolute;
-    background-color: green;
+    padding: 15px;
+    background-color: #56A3A6;
     opacity: 0.5;
     top: 8px;
     left: 8px;
     z-index: 1;
+}
+
+/*----------Browse Recipes ----------*/
+
+.browse-recipe-container {
+    margin-top: 100px;
+}
+
+.browse-recipe-column {
+    padding: 0px;
+}
+
+.browse-recipe {
+    display: block;
+    position: relative;
+    padding: 0px;
+    margin: 50px 30px;
+    overflow: hidden;
+    float: left;
+    clear: both;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.browse-recipe-title {
+    padding: 10px 0px;;
+    color: #56A3A6;
+}
+
+.browse-recipe-summary {
+    font-size: 16px;
+}
+
+.view-details-container {
+    padding: 15px;
+}
+
+.btn {
+    background-color: #56A3A6;
+    color: white;
+}
+
+a:link,
+a:visited,
+a:active,
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/*---------Footer----------*/
+
+.footer-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background-color: #56A3A6;
 }
