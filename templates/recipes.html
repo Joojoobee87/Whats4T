@@ -1,27 +1,32 @@
 {% extends 'base.html'%} 
 {% block content %}
-    {% for recipe in recipes %}
+
+<div class="container browse-recipe-container">
+
     <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <div class="col-md-6 col-lg-6"> 
+
+        {% for recipe in recipes %}
+
+        <div class="col-md-5 col-lg-5 browse-recipe">
+            <div class="col-md-12 col-lg-12 browse-recipe-column"> 
                 <img class="recipe-image" src="{{ recipe.image }}" alt="recipe image">
             </div>
-            <div class="col-md-6 col-lg-6">
-                <h2>{{ recipe.title }}
-                <p> {{ recipe.summary }} </p>
+            <div class="col-md-12 col-lg-12">
+                <h2 class="browse-recipe-title">{{ recipe.title }}</h2>
+                <p class="browse-recipe-summary"> {{ recipe.summary }} </p>
             </div>
             <div class="col-md-12 col-lg-12">
-                <span><i></i>{{ recipe.prep_time }}</span>
-                <span><i></i>{{ recipe.cooking_time }}</span>
-                <span><i></i>{{ recipe.total_time }}</span>
-                <span><i></i>{{ recipe.likes_count }}</span>
+                    <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipe.total_time }} mins</span>
+                    <i class="far fa-thumbs-up"></i><span class="icon-label">Likes:</span><span class="icon-content">{{ recipe.likes_count }}</span>
             </div>
-            <div>
-                <button class="btn btn-success" type="submit"><a href="{{url_for('show_recipe', recipe_id=recipe._id)}}">Show</a></button>
+            <div class="col-md-12 col-lg-12 view-details-container">
+                <button class="btn" type="submit"><a href="{{url_for('show_recipe', recipe_id=recipe._id)}}">View recipe</a></button>
             </div>
         </div>
-    </div>
 
-    {% endfor %}
+        {% endfor %}
+
+    </div>
+</div>
 
 {% endblock %}
