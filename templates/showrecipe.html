@@ -3,18 +3,26 @@
 {% block content %}
 
 <div class="container show-recipe-container">
-    <div class="row">
+    <div class="row show-recipe">
         <div class="col-md-6 col-lg-6 show-recipe-image">
             <img class="recipe-image" src="{{ recipes.image }}" alt="recipe image">
         </div>
         <div class="col-md-6 col-lg-6 show-recipe-summary">
-            <h1>{{recipes.title}}</h1>
+            <h1 class="show-recipe-title">{{recipes.title}}</h1>
             <p>{{ recipes.summary }}</p>
                 <div>
-                    <i class="fas fa-user-clock"></i><span class="icon-label">Prep:</span><span class="icon-content">{{ recipes.prep_time }} mins</span>
-                    <i class="fas fa-stopwatch"></i><span class='icon-label'>Cook:</span><span class="icon-content">{{ recipes.cooking_time }} mins</span>
-                    <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipes.total_time }} mins</span>
-                    <i class="far fa-thumbs-up"></i><span class="icon-label">Likes:</span><span class="icon-content">{{ recipes.likes_count }}</span>
+                    <div class="show-recipe-icon">
+                        <i class="fas fa-user-clock"></i><span class="icon-label">Prep:</span><span class="icon-content">{{ recipes.prep_time }} mins</span>
+                    </div>
+                    <div class="show-recipe-icon">
+                        <i class="fas fa-stopwatch"></i><span class='icon-label'>Cook:</span><span class="icon-content">{{ recipes.cooking_time }} mins</span>
+                    </div>
+                    <div class="show-recipe-icon">
+                        <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipes.total_time }} mins</span>
+                    </div>
+                    <div class="show-recipe-icon">
+                        <i class="far fa-thumbs-up"></i><span class="icon-label">Likes:</span><span class="icon-content">{{ recipes.likes_count }}</span>
+                    </div>
                 </div>
         </div>
     </div>
@@ -53,9 +61,9 @@
     </div>
     </div>
 
-    <div class="container-advert">
-        <div class=row>
-            <div class="col-md-8 col-lg-8">
+    <div class="advert-container">
+        <div class="row advert-row">
+            <div class="col-md-8 col-lg-8 advert-column">
                 <img src="https://s7e3a.scene7.com/is/image/LakelandCamel/ovenmate-hero?$1250$" alt="advertising" class="advert-image">
                 <div class="col-lg-6 col-md-6 advert-text">
                     <h2>Restore your house to order this spring</h2>
