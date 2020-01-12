@@ -3,7 +3,58 @@
     background-color: red;
 }
 
+/* show recipe page */
+
+.show-recipe-container {
+    margin: 50px 0px;
+}
+
 .recipe-image {
-    max-height: 200px;
-    max-width: 300px;
+    max-width: 100%;
+}
+
+.show-recipe-image {
+    display: inline-block;
+    position: relative;
+}
+
+.show-recipe-summary {
+    display: inline-block;
+    position: relative;
+}
+
+.recipe-accordion-button {
+    font-size: 24px;
+}
+
+.recipe-method {
+    white-space: pre-wrap;
+    font-size: 16px !important;
+}
+
+.icon-label {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+
+/* -------- Advertising space ----------*/
+
+.container-advert {
+    display: block;
+    position: relative;
+}
+
+.advert-image {
+    max-width: 100%;
+}
+
+.advert-text {
+    display: block;
+    position: absolute;
+    background-color: green;
+    opacity: 0.5;
+    top: 8px;
+    left: 8px;
+    z-index: 1;
 }
