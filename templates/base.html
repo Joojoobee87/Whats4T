@@ -29,11 +29,11 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    My Cupboard
+                    My Recipes
                     </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ url_for('my_recipes') }}"">View My Recipes</a>
                 <a class="dropdown-item" href="{{ url_for('create_recipe') }}">Create a Recipe</a>
-                <a class="dropdown-item" href="#">View My Recipes</a>
                 <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
