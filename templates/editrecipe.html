@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{{ url_for('edit_recipe', recipe_id=recipes._id) }}" method="POST">
+<form action="{{ url_for('show_recipe', recipe_id=recipes._id)}}" method="POST">
 
     <div class="form-group">
     <label for="formGroupExampleInput2">Recipe Image</label>
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
     <label for="exampleFormControlTextarea1">Method</label>
-    <textarea name="method" id="method" class="form-control" rows="8">{{ recipes.method }}"></textarea>
+    <textarea name="method" id="method" class="form-control" rows="8">{{ recipes.method }}</textarea>
     </div>
     <div class="form-group">
     <label for="formGroupExampleInput">Tags</label>
@@ -39,6 +39,8 @@
     </div>
     <div class="form-row">
         <button class="btn btn-success" type="submit">Update Recipe</button>
+        <button class="btn btn-success"><a href="{{ url_for('my_recipes') }}">Back</a></button>
+        <button class="btn"><a href="{{url_for('delete_recipe', recipe_id=recipes._id)}}">Delete</a></button>
     </div>
 </form>
 
