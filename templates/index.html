@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container browse-recipe-container">
+
+<h2>Recently added recipes</h2>
+
+    <div class="row">
+
+        {% for add in recently_added %}
+
+        <div class="col-md-5 col-lg-5 browse-recipe">
+            <div class="col-md-12 col-lg-12 browse-recipe-column"> 
+                <img class="recipe-image" src="{{ add.image }}" alt="recipe image">
+            </div>
+            <div class="col-md-12 col-lg-12">
+                <h2 class="browse-recipe-title">{{ add.title }}</h2>
+                <p class="browse-recipe-summary"> {{ add.summary }} </p>
+            </div>
+            <div class="col-md-12 col-lg-12">
+                    <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ add.total_time }} mins</span>
+                    <i class="far fa-thumbs-up"></i><span class="icon-label">Likes:</span><span class="icon-content">{{ add.likes_count }}</span>
+            </div>
+            <div class="col-md-12 col-lg-12 view-details-container">
+                <button class="btn" type="submit"><a href="{{url_for('show_recipe', recipe_id=add._id)}}">View recipe</a></button>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+<hr>
+
+<div class="container browse-recipe-container">
+
+<h2>Most liked recipes</h2>
+
+    <div class="row">
+
+        {% for view in most_likes %}
+
+        <div class="col-md-5 col-lg-5 browse-recipe">
+            <div class="col-md-12 col-lg-12 browse-recipe-column"> 
+                <img class="recipe-image" src="{{ view.image }}" alt="recipe image">
+            </div>
+            <div class="col-md-12 col-lg-12">
+                <h2 class="browse-recipe-title">{{ view.title }}</h2>
+                <p class="browse-recipe-summary"> {{ view.summary }} </p>
+            </div>
+            <div class="col-md-12 col-lg-12">
+                    <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ view.total_time }} mins</span>
+                    <i class="far fa-thumbs-up"></i><span class="icon-label">Likes:</span><span class="icon-content">{{ view.likes_count }}</span>
+            </div>
+            <div class="col-md-12 col-lg-12 view-details-container">
+                <button class="btn" type="submit"><a href="{{url_for('show_recipe', recipe_id=view._id)}}">View recipe</a></button>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}
