@@ -138,6 +138,18 @@ a:hover {
     text-decoration: none;
 }
 
+
+/*---------My Recipes----------*/
+
+.my-recipes-image-container {
+    width: 100%;
+
+}
+
+.my-recipes-image {
+    max-width: 100%;
+}
+
 /*---------Footer----------*/
 
 .footer-container {
