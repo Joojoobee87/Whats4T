@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-recipes-container">
+
+{% for recipe in recipes %}
+
+    <div class="row my-recipes">
+        <div class="col-md-6 col-lg-6 my-recipes-image-container">
+            <img class="my-recipes-image" src="{{ recipe.image }}" alt="recipe image">
+        </div>
+        <div class="col-md-6 col-lg-6 my-recipes-content">
+            <h1 class="my-recipes-title">{{recipe.title}}</h1>
+            <div class="col-md-12 col-lg-12 my-recipes-actions">
+                <button class="btn" type="submit"><a href="">Edit</a></button>
+                <button class="btn" type="submit"><a href="">Delete</a></button>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+{% endfor %}
+
+</div>
+
+
+{% endblock %}
