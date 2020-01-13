@@ -1,6 +1,12 @@
 {% extends 'base.html'%} 
 {% block content %}
 
+
+<form action="submit" method="POST">
+    <input name="search_word" type="text" placeholder="Search for recipes using keywords i.e. vegetarian, pesto, cheese">
+    <button class="btn" type="submit"><a href="{{url_for('find_recipes')}}">Search</a></button>
+</form>
+
 <div class="container browse-recipe-container">
 
     <div class="row">
