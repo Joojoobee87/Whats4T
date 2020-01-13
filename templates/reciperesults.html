@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Here are the results to match your search</h1>
+
+<p>Add some text here about.....</p>
+<div class="row">
+    <ul class="collapsible" data-collapsible="accordion">
+        {% for recipe in recipes %}
+        <li>
+            {{ recipe.title }}
+        </li>
+        <li>
+            {{ recipe.summary}}
+        </li>
+        {% endfor %}
+
+    </ul>
+</div>
+
+{% endblock %}
