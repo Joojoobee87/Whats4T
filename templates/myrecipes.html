@@ -7,13 +7,14 @@
 {% for recipe in recipes %}
 
     <div class="row my-recipes">
-        <div class="col-md-6 col-lg-6 my-recipes-image-container">
+        <div class="col-md-4 col-lg-4 my-recipes-image-container">
             <img class="my-recipes-image" src="{{ recipe.image }}" alt="recipe image">
         </div>
-        <div class="col-md-6 col-lg-6 my-recipes-content">
+        <div class="col-md-4 col-lg-4 my-recipes-content">
             <h1 class="my-recipes-title">{{recipe.title}}</h1>
             <div class="col-md-12 col-lg-12 my-recipes-actions">
-                <button class="btn" type="submit"><a href="">Edit</a></button>
+                <button class="btn" type="submit"><a href="{{url_for('show_recipe', recipe_id=recipe._id)}}">View</a></button>
+                <button class="btn" type="submit"><a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">Edit</a></button>
                 <button class="btn" type="submit"><a href="">Delete</a></button>
             </div>
         </div>
