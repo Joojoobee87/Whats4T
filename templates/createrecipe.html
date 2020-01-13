@@ -2,18 +2,12 @@
 <h1>Got a new recipe you'd like to share?</h1>
 
 <p>Add some text here about adding new recipes to the collection</p>
-<div class="row">
-    <ul class="collapsible" data-collapsible="accordion">
-        {% for recipe in recipes %}
-        <li>
-            {{ recipe.title }}
-        </li>
-        {% endfor %}
-
-    </ul>
-</div>
 
 <form action="{{ url_for('insert_recipe') }}" method="POST">
+    <div class="form-group">
+    <label for="formGroupExampleInput2">Recipe Image</label>
+    <input name="image" id="image" type="text" class="form-control" placeholder="enter image url">
+    </div>
     <div class="form-group">
     <label for="formGroupExampleInput2">Recipe Title</label>
     <input name="title" id="title" type="text" class="form-control" placeholder="Add your recipe title...">
@@ -30,11 +24,23 @@
     <label for="formGroupExampleInput">Tags</label>
     <input name="tags" id="tags" type="text" class="form-control" placeholder="Help other users find your recipe by adding keyword tags e.g. vegetarian, easy">
     </div>
-    <button class="btn btn-success" type="submit">Add Recipe</button>
+    <div class="form-row">
+        <div class="col">
+            <label for="formGroupExampleInput">Prep Time</label>
+            <input type="number" class="form-control" placeholder="20">
+        </div>
+        <div class="col">
+            <label for="formGroupExampleInput">Cooking Time</label>
+            <input type="number" class="form-control" placeholder="60">
+        </div>
+    </div>
+    <div class="form-row">
+        <button class="btn btn-success" type="submit">Add Recipe</button>
+    </div>
 </form>
 
 
-{% endblock %}
+    {% endblock %}
 
 
 
