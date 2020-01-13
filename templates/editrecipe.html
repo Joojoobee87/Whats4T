@@ -1,0 +1,46 @@
+{% extends 'base.html'%} 
+
+{% block content %}
+
+<form action="{{ url_for('edit_recipe', recipe_id=recipes._id) }}" method="POST">
+
+    <div class="form-group">
+    <label for="formGroupExampleInput2">Recipe Image</label>
+    <div class="col-md-4 col-lg-4">
+        <img src="{{ recipes.image }}" alt="recipe image">
+    </div>
+    <input name="image" id="image" type="text" class="form-control" value="{{ recipes.image }}">
+    </div>
+    <div class="form-group">
+    <label for="formGroupExampleInput2">Recipe Title</label>
+    <input name="title" id="title" type="text" class="form-control" value="{{ recipes.title }}">
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1">Ingredients</label>
+    <textarea name="ingredients" id="ingredients" class="form-control" rows="8">{{ recipes.ingredients }}</textarea>
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1">Method</label>
+    <textarea name="method" id="method" class="form-control" rows="8">{{ recipes.method }}"></textarea>
+    </div>
+    <div class="form-group">
+    <label for="formGroupExampleInput">Tags</label>
+    <input name="tags" id="tags" type="text" class="form-control" value="{{ recipes.tags }}">
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <label for="formGroupExampleInput">Prep Time</label>
+            <input type="number" class="form-control" placeholder="20" value="{{ recipes.prep_time }}">
+        </div>
+        <div class="col">
+            <label for="formGroupExampleInput">Cooking Time</label>
+            <input type="number" class="form-control" placeholder="60" value="{{ recipes.cooking_time }}">
+        </div>
+    </div>
+    <div class="form-row">
+        <button class="btn btn-success" type="submit">Update Recipe</button>
+    </div>
+</form>
+
+
+{% endblock %}
