@@ -40,7 +40,6 @@ def create_recipe():
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
-    total_time = request.form.get('prep_time') + request.form.get('cooking_time')
     new_recipe = {
         'title': request.form.get('title'),
         'ingredients': request.form.get('ingredients'),
@@ -48,9 +47,9 @@ def insert_recipe():
         'image': request.form.get('image'),
         'prep_time': request.form.get('prep_time'),
         'cooking_time': request.form.get('cooking_time'),
-        'total_time': total_time,
+        'total_time': request.form.get('total_time'),
         'tags': request.form.get('tags'),
-        'likes_count': " ",
+        'likes_count': 0,
         'date_updated': datetime.datetime.utcnow()
     }
     mongo.db.recipes.insert_one(new_recipe)
@@ -84,6 +83,13 @@ def my_recipes():
 def edit_recipe(recipe_id):
     selected_recipe=mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     return render_template("editrecipe.html", recipes=selected_recipe)
+
+
+@app.route('/delete_recipe/<recipe_id>', methods=['GET', 'POST'])
+def delete_recipe(recipe_id):
+    selected_recipe=mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
+    recipes=mongo.db.recipes.find()
+    return render_template("myrecipes.html", recipes=recipes)
 
 
 if __name__ == '__main__':
