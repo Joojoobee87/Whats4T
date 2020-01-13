@@ -3,6 +3,8 @@ from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
+from pymongo import ReturnDocument
+import datetime
 if path.exists("env.py"):
     import env
     
@@ -43,12 +45,13 @@ def insert_recipe():
         'title': request.form.get('title'),
         'ingredients': request.form.get('ingredients'),
         'method': request.form.get('method'),
-        'images': request.form.get('images'),
+        'image': request.form.get('image'),
         'prep_time': request.form.get('prep_time'),
         'cooking_time': request.form.get('cooking_time'),
         'total_time': total_time,
         'tags': request.form.get('tags'),
-        'likes_count': " "
+        'likes_count': " ",
+        'date_updated': datetime.datetime.utcnow()
     }
     mongo.db.recipes.insert_one(new_recipe)
     return redirect(url_for('get_recipes'))
@@ -65,8 +68,22 @@ def show_recipe(recipe_id):
 def find_recipes():
     #search_word = request.form.get('search_word')
     recipes=mongo.db.recipes.find()
-    selected=mongo.db.recipes.find( { 'title': 'Chinese Chicken Stir Fry' } )
+    selected=mongo.db.recipes.find({'title': 'Chinese Chicken Stir Fry'})
     return render_template("reciperesults.html", recipes=selected)
+
+
+@app.route('/my_recipes', methods=['GET'])
+#Need to add a validation class here to confirm if a user is logged in
+def my_recipes():
+    #Need to add the key:value into the find() method for user_id
+    my_recipes=mongo.db.recipes.find({'user_id': 'testuser'})
+    return render_template("myrecipes.html", recipes=my_recipes)
+
+
+@app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
+def edit_recipe(recipe_id):
+    selected_recipe=mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    return render_template("editrecipe.html", recipes=selected_recipe)
 
 
 if __name__ == '__main__':
