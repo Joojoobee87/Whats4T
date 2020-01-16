@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
 from pymongo import ReturnDocument
+from forms import RegistrationForm, LoginForm
 import datetime
 if path.exists("env.py"):
     import env
@@ -42,6 +43,7 @@ def create_recipe():
 def insert_recipe():
     new_recipe = {
         'title': request.form.get('title'),
+        'summary': request.form.get('summary'),
         'ingredients': request.form.get('ingredients'),
         'method': request.form.get('method'),
         'image': request.form.get('image'),
@@ -85,11 +87,45 @@ def edit_recipe(recipe_id):
     return render_template("editrecipe.html", recipes=selected_recipe)
 
 
+@app.route('/update_recipe/<recipes_id>', methods=['GET', 'POST'])
+def update_recipe(recipes_id):
+    mongo.db.recipes.update_one({
+        '_id': ObjectId(recipes_id),
+        }, {
+            '$set': {
+                'user_id': "testuser",
+                'title': request.form.get('title'),
+                'summary': request.form.get('summary'),
+                'ingredients': request.form.get('ingredients'),
+                'method': request.form.get('method'),
+                'image': request.form.get('image'),
+                'prep_time': request.form.get('prep_time'),
+                'cooking_time': request.form.get('cooking_time'),
+                'total_time': request.form.get('total_time'),
+                'tags': request.form.get('tags'),
+                'date_updated': datetime.datetime.utcnow()
+            }
+        })
+    return redirect(url_for('my_recipes'))
+
+
 @app.route('/delete_recipe/<recipe_id>', methods=['GET', 'POST'])
 def delete_recipe(recipe_id):
     selected_recipe=mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
     recipes=mongo.db.recipes.find()
     return render_template("myrecipes.html", recipes=recipes)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    return render_template('register.html', title="Register", form=form)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html', title="Log In", form=form)
 
 
 if __name__ == '__main__':
