@@ -126,8 +126,6 @@ def delete_recipe(recipe_id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
 
     if form.validate_on_submit():
         existing = mongo.db.users.find_one({'email': request.form.get('email')})
@@ -137,6 +135,8 @@ def login():
             """If an existing user email is present, check match on passwords"""
             encrypted_pass = bcrypt.generate_password_hash(request.form.get('password')).decode('utf-8')
             if bcrypt.check_password_hash(existing.get('password'), request.form.get('password')):
+                session['email'] = request.form['email']
+                session['logged_in'] = True
                 flash(f'Welcome back!', 'success')
                 return redirect(url_for('home'))
             else: 
@@ -168,6 +168,8 @@ def register():
                 'password': encrypted_pass,
             }
             mongo.db.users.insert_one(new_user)
+            session['email'] = request.form['email']
+            session['logged_in'] = True
             flash(f'Account created for {form.username.data}!', 'success')
             return redirect(url_for('home'))
         """If existing user, redirect to login page to enter existing details"""
@@ -178,16 +180,10 @@ def register():
 
 
 @app.route("/logout")
-@login_required
 def logout():
-    logout_user()
-    flash(f'You have successfully logged out', 'success')
+    """logs out user and clears session"""
+    session.clear()
     return redirect(url_for('home'))
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return mongo.db.recipes.find_one({'_id': ObjectId(user_id)})
 
 
 if __name__ == '__main__':
