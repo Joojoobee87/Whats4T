@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, flash, session
+from flask_login import login_user, current_user, logout_user, login_required
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
@@ -12,11 +13,14 @@ if path.exists("env.py"):
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get('MONGODB_NAME')
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
+app.secret_key = '1ee8825fe32fcc5a03559086d4218a1a'
+
+
 
 mongo = PyMongo(app)
 
 @app.route('/')
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     """Home page"""
     """Displays the 4 most recently added recipes in the collection"""
@@ -116,16 +120,39 @@ def delete_recipe(recipe_id):
     return render_template("myrecipes.html", recipes=recipes)
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    form = RegistrationForm()
-    return render_template('register.html', title="Register", form=form)
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    return render_template('login.html', title="Log In", form=form)
+    if form.validate_on_submit():
+        current_user = mongo.db.users.find_one({'email': request.form.get('email')})
+        flash(f'You have signed in successfully')
+        return redirect(url_for('home'))
+    return render_template('login.html', title='Log In', form=form)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    """If form is validate on submit, check if an existing user"""
+    if form.validate_on_submit():
+        existing = mongo.db.users.find_one({'email': request.form.get('email')})
+        """If not an existing user, create a new user in the database"""
+        if existing is None:
+            """Encrypt password of user"""
+            encrypt_pass = {}
+            new_user = {
+                'username': request.form.get('username'),
+                'email': request.form.get('email'),
+                'password': request.form.get('password'),
+            }
+            mongo.db.users.insert_one(new_user)
+            flash(f'Account created for {form.username.data}!', 'success')
+            return redirect(url_for('home'))
+        """If existing user, redirect to login page to enter existing details"""
+        flash(f'Email address already in use. Please login to your account.', 'danger')
+        return redirect(url_for('login'))
+
+    return render_template('register.html', title='Register', form=form)
 
 
 if __name__ == '__main__':
