@@ -6,12 +6,30 @@
     {{ form.csrf_token }}
   <div class="form-group">
     {{ form.email.label(class="form-control-label") }}
-    {{ form.email(class="form-control") }}
+    {% if form.email.errors %}
+        {{ form.email(class="form-control is-invalid") }}
+        <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ form.email(class="form-control") }}
+    {% endif%}
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
     {{ form.password.label (class="form-control-label") }}
-    {{ form.password(class="form-control") }}
+    {% if form.password.errors %}
+        {{ form.password(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+    {% else %}
+        {{ form.password(class="form-control") }}
+    {% endif %}
   </div>
   <div class="form-group">
     {{ form.remember.label (class="form-check-label")}}
