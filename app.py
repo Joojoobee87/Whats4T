@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, flash, session
-from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import LoginManager, login_user, current_user, logout_user, login_required
+from flask_bcrypt import Bcrypt
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
@@ -14,8 +15,9 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get('MONGODB_NAME')
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.secret_key = '1ee8825fe32fcc5a03559086d4218a1a'
-
-
+bcrypt = Bcrypt()
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 mongo = PyMongo(app)
 
@@ -78,6 +80,7 @@ def find_recipes():
 
 
 @app.route('/my_recipes', methods=['GET'])
+@login_required
 #Need to add a validation class here to confirm if a user is logged in
 def my_recipes():
     #Need to add the key:value into the find() method for user_id
@@ -123,27 +126,46 @@ def delete_recipe(recipe_id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    if form.validate_on_submit():
-        current_user = mongo.db.users.find_one({'email': request.form.get('email')})
-        flash(f'You have signed in successfully')
+    if current_user.is_authenticated:
         return redirect(url_for('home'))
+
+    if form.validate_on_submit():
+        existing = mongo.db.users.find_one({'email': request.form.get('email')})
+        
+        if existing:
+            """Encrypt password of user"""
+            """If an existing user email is present, check match on passwords"""
+            encrypted_pass = bcrypt.generate_password_hash(request.form.get('password')).decode('utf-8')
+            if bcrypt.check_password_hash(existing.get('password'), request.form.get('password')):
+                flash(f'Welcome back!', 'success')
+                return redirect(url_for('home'))
+            else: 
+                flash(f'Sorry, this password is incorrect. Please retype', 'danger')
+                return redirect(url_for('login'))
+            
+        if existing is None:
+            """If not an existing user, redirect user to registration page"""
+            flash(f'Sorry this email address does not exist. Please register to create an account', 'danger')
+            return redirect(url_for('register'))
+
     return render_template('login.html', title='Log In', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+
     """If form is validate on submit, check if an existing user"""
     if form.validate_on_submit():
         existing = mongo.db.users.find_one({'email': request.form.get('email')})
         """If not an existing user, create a new user in the database"""
         if existing is None:
             """Encrypt password of user"""
-            encrypt_pass = {}
+            encrypted_pass = bcrypt.generate_password_hash(request.form.get('password')).decode('utf-8')
             new_user = {
                 'username': request.form.get('username'),
                 'email': request.form.get('email'),
-                'password': request.form.get('password'),
+                'password': encrypted_pass,
             }
             mongo.db.users.insert_one(new_user)
             flash(f'Account created for {form.username.data}!', 'success')
@@ -153,6 +175,19 @@ def register():
         return redirect(url_for('login'))
 
     return render_template('register.html', title='Register', form=form)
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    flash(f'You have successfully logged out', 'success')
+    return redirect(url_for('home'))
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return mongo.db.recipes.find_one({'_id': ObjectId(user_id)})
 
 
 if __name__ == '__main__':
