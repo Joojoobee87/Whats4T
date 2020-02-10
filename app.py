@@ -2,10 +2,10 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 from os import path
-from pymongo import ReturnDocument
+from pymongo import ReturnDocument, IndexModel, ASCENDING, DESCENDING
 from forms import RegistrationForm, LoginForm
 import datetime
 if path.exists("env.py"):
@@ -26,9 +26,9 @@ mongo = PyMongo(app)
 def home():
     """Home page"""
     """Displays the 4 most recently added recipes in the collection"""
-    recently_added = mongo.db.recipes.find().limit(4).sort([('date_updated', -1)])
+    recently_added = mongo.db.recipes.find().limit(4).sort('date_updated', -1)
     """Display the 4 most liked recipes in the collection"""
-    most_likes = mongo.db.recipes.find().limit(4).sort([('likes_count', -1)])
+    most_likes = mongo.db.recipes.find().limit(4).sort('likes_count', -1)
     return render_template('index.html', recently_added=recently_added, most_likes=most_likes)
 
 
@@ -70,13 +70,14 @@ def show_recipe(recipe_id):
     return render_template("showrecipe.html", recipes=selected_recipe)
 
 
-
 @app.route('/find_recipes', methods=['GET', 'POST'])
 def find_recipes():
-    #search_word = request.form.get('search_word')
-    recipes=mongo.db.recipes.find()
-    selected=mongo.db.recipes.find({'title': 'Chinese Chicken Stir Fry'})
-    return render_template("reciperesults.html", recipes=selected)
+    search_query = request.form.get('search_word')
+    mongo.db.recipes.create_index([('title', 'text'), ('summary', 'text'), ('ingredients', 'text')], name="recipes_index")
+    results = mongo.db.recipes.find({"$text": {"$search": search_query}},
+                                    {'score': {'$meta': "textScore"}}
+                                    ).sort([('score', {'$meta': 'textScore'})])
+    return render_template("reciperesults.html", recipes=results)
 
 
 @app.route('/my_recipes', methods=['GET'])
