@@ -11,6 +11,8 @@ body {
 /* show recipe page */
 
 .show-recipe-container {
+    display: block;
+    position: relative;
     margin: 50px 0px;
 }
 
@@ -27,8 +29,10 @@ body {
 }
 
 .show-recipe-image {
-    display: inline-block;
+    display: block;
     position: relative;
+    float: left;
+    clear: both;
     padding: 0px;
 }
 
@@ -59,6 +63,31 @@ body {
 .icon-label {
     margin-right: 5px;
     margin-left: 5px;
+}
+
+.image-icons-inset {
+    display: inline-block;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.icon-box {
+    display: inline-block;
+    position: relative;
+    clear: left;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    background-color:white;
+    padding: 5px 0px;
+}
+
+.inset-icons {
+    color: #56A3A6;
 }
 
 
@@ -97,6 +126,8 @@ body {
 }
 
 .browse-recipe-column {
+    display: block;
+    position: relative;
     padding: 0px;
 }
 
@@ -109,6 +140,19 @@ body {
     float: left;
     clear: both;
     background-color: white;
+    border-radius: 10px;
+}
+
+.browse-recipe-inset {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    margin-left: 15px;
+    margin-top: 15px;
+    background-color: white;
+    opacity: 0.8;
     border-radius: 10px;
 }
 
