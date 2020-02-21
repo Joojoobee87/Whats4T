@@ -3,15 +3,16 @@
 {% block content %}
 
 <div class="container show-recipe-container">
-    <div class="row show-recipe">
-        <div class="col-md-6 col-lg-6 show-recipe-image">
+
+    <div class="row show-recipe justify-content-md-center">
+        <div class="col-md-5 col-lg-5 show-recipe-image">
             <img class="recipe-image" src="{{ recipes.image }}" alt="recipe image">
             <div class="image-icons-inset">
                 <div class="icon-box"><i class="inset-icons far fa-star"></i></div>
                 <div class="icon-box"><i class="inset-icons far fa-thumbs-up"></i></div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-6 show-recipe-summary">
+        <div class="col-md-5 col-lg-5 show-recipe-summary">
             <h1 class="show-recipe-title">{{recipes.title}}</h1>
             <p>{{ recipes.summary }}</p>
                 <div>
@@ -25,47 +26,46 @@
                         <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipes.total_time }} mins</span>
                     </div>
                     <div class="show-recipe-icon">
-                        <i class="far fa-thumbs-up"></i><span class="icon-label">Likes:</span><span class="icon-content">{{ recipes.likes_count }}</span>
+                        <i class="far fa-thumbs-up"></i><span class="icon-label">Views:</span><span class="icon-content">{{ recipes.views_count }}</span>
                     </div>
                 </div>
         </div>
     </div>
+    <div class="row justify-content-md-center">
+    <div class="col-md-10 col-lg-10 accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link recipe-accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Ingredients
+                </button>
+            </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                {{ recipes.ingredients }}
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed recipe-accordion-button" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Method
+                </button>
+            </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <p class="recipe-method">{{ recipes.method }}</p>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
-
-
-<div class="accordion" id="accordionExample">
-    <div class="card">
-        <div class="card-header" id="headingOne">
-        <h2 class="mb-0">
-            <button class="btn btn-link recipe-accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Ingredients
-            </button>
-        </h2>
-        </div>
-
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-        <div class="card-body">
-            {{ recipes.ingredients }}
-        </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header" id="headingTwo">
-        <h2 class="mb-0">
-            <button class="btn btn-link collapsed recipe-accordion-button" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Method
-            </button>
-        </h2>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-        <div class="card-body">
-            <p class="recipe-method">{{ recipes.method }}</p>
-        </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="advert-container">
+<div class="row justify-content-md-center">
+    <div class="col-md-10 col-lg-10 advert-container">
         <div class="row advert-row">
             <div class="col-md-8 col-lg-8 advert-column">
                 <img src="https://s7e3a.scene7.com/is/image/LakelandCamel/ovenmate-hero?$1250$" alt="advertising" class="advert-image">
@@ -76,5 +76,12 @@
             </div>
         </div>
     </div>
+</div>
+
+</div>
+
+
+
+
             
 {% endblock %}
