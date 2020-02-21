@@ -9,8 +9,8 @@
 </head>
 
 <body>
+    <img class="background-image" src="{{url_for('static', filename='images/backgroundimage.jpg')}}" alt="background-image">
     <header>
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Whats4T?</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,31 +24,59 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('get_recipes') }}">Browse</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Another link</a>
-                </li>
+                {% if 'email' in session %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     My Recipes
                     </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{ url_for('my_recipes') }}"">View My Recipes</a>
-                <a class="dropdown-item" href="{{ url_for('create_recipe') }}">Create a Recipe</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ url_for('my_recipes') }}">View My Recipes</a>
+                    <a class="dropdown-item" href="{{ url_for('create_recipe') }}">Create a Recipe</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Log In</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         </nav>
     </header>
-    <div class="container">
-        {% block content %} {% endblock %}
-    </div>
-    <footer>
-        <div class="footer-container">
-        
+    <div class="page-container">
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block content %} 
+            {% endblock %}
         </div>
-    </footer>
+        <footer>
+				<div class="footer-container">
+					<div class="social-media">
+						<a href="https://www.facebook.com/joanne.ingle2" target="_blank"
+							class="fab fa-facebook-square"></a>
+						<a href="https://twitter.com/JoBroomfield3" target="_blank" class="fab fa-twitter-square"></a>
+						<a href="https://www.instagram.com/joojoobee87/" target="_blank" class="fab fa-instagram"></a>
+					</div>
+					<div class="footer-links">
+						<a href="privacy.html">Privacy</a>|
+						<a href="terms.html">Terms & Conditions</a>
+					</div>
+					<div class="copyright"><i class="far fa-copyright"></i><span>JooJooBee 2019</span></div>
+				</div>
+        </footer>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
