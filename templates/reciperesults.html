@@ -20,6 +20,8 @@
         </form>
     </div>
 
+    {% if 'title' in recipes %}
+
     <h2>Here are the results to match your search...</h2>
 
     <div class="row">
@@ -46,6 +48,12 @@
         </div>
 
         {% endfor %}
+
+    {% else %}
+
+        <h2>Sorry we couldn't find what you are looking for...</h2>
+
+    {% endif %}
 
     </div>
 </div>
