@@ -1,11 +1,115 @@
 body {
     font-family: 'Catamaran', sans-serif;
-    background-color: #E4E6C3;
+    background-image: url("static/images/backgroundimage.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
 }
 
 .ingredients {
     white-space: pre-wrap;
     background-color: red;
+}
+
+.background-image {
+    display: block;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+}
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 200px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+}
+
+/*---------Footer----------*/
+
+footer {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background-color: #56A3A6;
+}
+
+.footer-container{
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding: 30px 0px;
+}
+
+.footer-links {
+    display: block;
+    position: relative;
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 0px;
+}
+
+.footer-container a:hover {
+    color: #4F756B;
+    text-decoration: none;
+}
+
+.footer-container a {
+    padding: 0 20px;
+    color: #ffffff;
+}
+
+.copyright {
+    display: block;
+    position: relative;
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+    color: #ffffff;
+    padding: 10px 0px;
+}
+
+.copyright i {
+    color: #ffffff!important;
+    display: inline-block;
+    position: relative;
+    padding: 0 5px;
+}
+
+.social-media {
+    padding: 10px 0px;
+
+}
+.social-media a {
+    font-size: 36px;
+    padding: 0px 20px;
+}
+
+.social-media a:hover {
+    color: #4F756B;
+    text-decoration: none;
 }
 
 /* show recipe page */
@@ -121,10 +225,6 @@ body {
 
 /*----------Browse Recipes ----------*/
 
-.browse-recipe-container {
-    margin-top: 100px;
-}
-
 .browse-recipe-column {
     display: block;
     position: relative;
@@ -194,12 +294,3 @@ a:hover {
     max-width: 100%;
 }
 
-/*---------Footer----------*/
-
-.footer-container {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 150px;
-    background-color: #56A3A6;
-}
