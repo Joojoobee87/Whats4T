@@ -2,21 +2,53 @@
 
 {% block content %}
 
-<h1>Here are the results to match your search</h1>
+<div class="container browse-recipe-container">
 
-<p>Add some text here about.....</p>
-<div class="row">
-    <ul class="collapsible" data-collapsible="accordion">
+    <div class="welcome">
+        <h2>Looking for something?</h2>
+        <p>Use our handy search box below to help you find something to suit!</p>
+        <ul>
+            <li>Enter keywords to search</li>
+            <li>Enter key ingredients you'd like to use</li>
+        </ul>
+    </div>
+
+    <div class="search-box">
+        <form action="{{url_for('find_recipes')}}" method="POST">
+            <input name="search_word" id="search_word" class="form-control" type="text" placeholder="Search for recipes using keywords i.e. vegetarian, pesto, cheese">
+            <button class="search btn" type="submit">Search</button>
+        </form>
+    </div>
+
+    <h2>Here are the results to match your search...</h2>
+
+    <div class="row">
+
         {% for recipe in recipes %}
-        <li>
-            {{ recipe.title }}
-        </li>
-        <li>
-            {{ recipe.summary}}
-        </li>
+
+        <div class="col-md-5 col-lg-5 browse-recipe">
+            <div class="col-md-12 col-lg-12 browse-recipe-column"> 
+                <img class="recipe-image" src="{{ recipe.image }}" alt="recipe image">
+                <div class="browse-recipe-inset col-md-10 col-lg-10">
+                    <div class="col-md-12 col-lg-12">
+                        <h3 class="browse-recipe-title">{{ recipe.title }}</h2>
+                        <p class="browse-recipe-summary">{{ recipe.summary }}</p>
+                    </div>
+                    <div class="col-md-12 col-lg-12">
+                        <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipe.total_time }} mins</span>
+                        <i class="far fa-thumbs-up"></i><span class="icon-label">Views:</span><span class="icon-content">{{ recipe.views_count }}</span>
+                    </div>
+                    <div class="col-md-12 col-lg-12 view-details-container">
+                        <button class="btn" type="submit"><a href="{{url_for('show_recipe', recipe_id=recipe._id)}}">View recipe</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {% endfor %}
 
-    </ul>
+    </div>
 </div>
+
 
 {% endblock %}
