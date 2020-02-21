@@ -13,6 +13,10 @@ body {
     height: 80px;
 }
 
+.alert {
+    margin: 0px 20px;
+}
+
 .ingredients {
     white-space: pre-wrap;
     background-color: red;
@@ -306,7 +310,8 @@ a:hover {
     padding-bottom: 20px;
 }
 
-.search {
+.search,
+.submit {
     margin: 10px 0px;
 }
 
@@ -321,3 +326,16 @@ a:hover {
     max-width: 100%;
 }
 
+/*-----------Login-------------*/
+
+.login-container {
+    display: block;
+    position: relative;
+    padding: 20px;
+}
+
+.link {
+    font-family: 'Catamaran', sans-serif;
+    color: #56A3A6 !important;
+    background-color: white !important;
+}
