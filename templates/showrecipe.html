@@ -7,28 +7,24 @@
     <div class="row show-recipe justify-content-md-center">
         <div class="col-md-5 col-lg-5 show-recipe-image">
             <img class="recipe-image" src="{{ recipes.image }}" alt="recipe image">
-            <div class="image-icons-inset">
-                <div class="icon-box"><i class="inset-icons far fa-star"></i></div>
-                <div class="icon-box"><i class="inset-icons far fa-thumbs-up"></i></div>
-            </div>
+                <div class="icon-box-inset col-md-4 col-lg-4">
+                    <div class="show-recipe-icon">
+                        <i class="inset-icons fas fa-user-clock"></i><span class="icon-label">Prep:</span><span class="icon-content">{{ recipes.prep_time }} mins</span>
+                    </div>
+                    <div class="show-recipe-icon">
+                        <i class="inset-icons fas fa-stopwatch"></i><span class='icon-label'>Cook:</span><span class="icon-content">{{ recipes.cooking_time }} mins</span>
+                    </div>
+                    <div class="show-recipe-icon">
+                        <i class="inset-icons fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipes.total_time }} mins</span>
+                    </div>
+                    <div class="show-recipe-icon">
+                        <i class="inset-icons far fa-thumbs-up"></i><span class="icon-label">Views:</span><span class="icon-content">{{ recipes.views_count }}</span>
+                    </div>
+                </div>
         </div>
         <div class="col-md-5 col-lg-5 show-recipe-summary">
             <h1 class="show-recipe-title">{{recipes.title}}</h1>
             <p>{{ recipes.summary }}</p>
-                <div>
-                    <div class="show-recipe-icon">
-                        <i class="fas fa-user-clock"></i><span class="icon-label">Prep:</span><span class="icon-content">{{ recipes.prep_time }} mins</span>
-                    </div>
-                    <div class="show-recipe-icon">
-                        <i class="fas fa-stopwatch"></i><span class='icon-label'>Cook:</span><span class="icon-content">{{ recipes.cooking_time }} mins</span>
-                    </div>
-                    <div class="show-recipe-icon">
-                        <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipes.total_time }} mins</span>
-                    </div>
-                    <div class="show-recipe-icon">
-                        <i class="far fa-thumbs-up"></i><span class="icon-label">Views:</span><span class="icon-content">{{ recipes.views_count }}</span>
-                    </div>
-                </div>
         </div>
     </div>
     <div class="row justify-content-md-center">
