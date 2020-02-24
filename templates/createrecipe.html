@@ -1,5 +1,8 @@
 {% extends 'base.html'%} {% block content %}
-<h1>Got a new recipe you'd like to share?</h1>
+
+<div class="create-recipe-container">
+
+<h2>Got a new recipe you'd like to share?</h2>
 
 <p>Add some text here about adding new recipes to the collection</p>
 
@@ -14,7 +17,7 @@
     </div>
     <div class="form-group">
     <label for="formGroupExampleInput2">Recipe Summary</label>
-    <textarea name="summary" id="summary" class="form-control" rows="5" placeholder="Add a summary about your recipe...">{{ recipes.summary }}</textarea>
+    <textarea name="summary" id="summary" class="form-control" rows="3" maxlength="500" placeholder="Add a summary about your recipe...">{{ recipes.summary }}</textarea>
     </div>
     <div class="form-group">
     <label for="exampleFormControlTextarea1">Ingredients</label>
@@ -31,23 +34,23 @@
     <div class="form-row">
         <div class="col">
             <label for="formGroupExampleInput">Prep Time</label>
-            <input type="number" class="form-control" placeholder="20">
+            <input name="prep_time" type="number" class="form-control" placeholder="20">
         </div>
         <div class="col">
             <label for="formGroupExampleInput">Cooking Time</label>
-            <input type="number" class="form-control" placeholder="60">
+            <input name="cooking_time" type="number" class="form-control" placeholder="60">
         </div>
         <div class="col">
             <label for="formGroupExampleInput">Total Time</label>
-            <input type="number" class="form-control" placeholder="80">
+            <input name="total_time" type="number" class="form-control" placeholder="80">
         </div>
     </div>
     <div class="form-row">
-        <button class="btn btn-success" type="submit">Add Recipe</button>
+        <button class="submit btn btn-success" type="submit">Add Recipe</button>
     </div>
 </form>
 
-
+</div>
     {% endblock %}
 
 
