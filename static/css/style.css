@@ -144,6 +144,7 @@ footer {
     width: 100%;
     height: 300px;
     overflow: hidden;
+    border-radius: 15px;
 }
 
 .show-recipe {
@@ -321,6 +322,7 @@ a:hover {
     width: 320px;
     height: 240px;
     max-width: 100%;
+    border-radius: 15px;
 }
 
 /*-----------Login-------------*/
