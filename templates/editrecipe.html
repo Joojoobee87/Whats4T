@@ -2,12 +2,15 @@
 
 {% block content %}
 
-<form action="{{ url_for('update_recipe', recipes_id=recipes._id)}}" method="POST">
+<div class="edit-recipe-container">
 
+<h2>Edit your recipe</h2>
+
+<form action="{{ url_for('update_recipe', recipes_id=recipes._id)}}" method="POST">
     <div class="form-group">
     <label for="formGroupExampleInput2">Recipe Image</label>
-    <div class="col-md-4 col-lg-4">
-        <img src="{{ recipes.image }}" alt="recipe image">
+    <div class="col">
+        <img class="edit-recipe-image" src="{{ recipes.image }}" alt="recipe image">
     </div>
     <input name="image" id="image" type="text" class="form-control" value="{{ recipes.image }}">
     </div>
@@ -46,13 +49,13 @@
         </div>
     </div>
     <div class="form-row">
-        <button class="btn btn-success" type="submit">Update Recipe</button>
-        <button class="btn btn-success"><a href="{{ url_for('my_recipes') }}">Back</a></button>
-        <button class="btn"><a href="{{url_for('delete_recipe', recipe_id=recipes._id)}}">Delete</a></button>
+        <button class="submit btn" type="submit">Update Recipe</button>
+        <button class="submit btn"><a href="{{ url_for('my_recipes') }}">Back</a></button>
+        <button class="submit btn"><a href="{{url_for('delete_recipe', recipe_id=recipes._id)}}">Delete</a></button>
     </div>
 </form>
 
-
+</div>
 
 
 {% endblock %}
