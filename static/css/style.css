@@ -156,8 +156,6 @@ footer {
 .show-recipe-image {
     display: block;
     position: relative;
-    float: left;
-    clear: both;
     padding: 0px;
 }
 
@@ -190,25 +188,18 @@ footer {
     margin-left: 5px;
 }
 
-.image-icons-inset {
-    display: inline-block;
+.icon-box-inset {
+    display: block;
     position: absolute;
-    text-align: center;
     z-index: 1;
     bottom: 0;
-    right: 0;
-    padding: 10px;
-}
-
-.icon-box {
-    display: inline-block;
-    position: relative;
-    clear: left;
-    height: 30px;
-    width: 30px;
+    left: 0;
     border-radius: 5px;
-    background-color:white;
-    padding: 5px 0px;
+    background-color: white;
+    padding: 5px;
+    margin: 10px;
+    background-color: white;
+    opacity: 0.8;
 }
 
 .inset-icons {
@@ -317,12 +308,18 @@ a:hover {
 
 /*---------My Recipes----------*/
 
+.my-recipes-container {
+    padding: 20px;
+}
+
 .my-recipes-image-container {
     width: 100%;
-
 }
 
 .my-recipes-image {
+    float: right;
+    width: 320px;
+    height: 240px;
     max-width: 100%;
 }
 
