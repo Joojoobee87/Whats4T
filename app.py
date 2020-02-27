@@ -16,8 +16,6 @@ app.config["MONGO_DBNAME"] = os.environ.get('MONGODB_NAME')
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 app.secret_key = '1ee8825fe32fcc5a03559086d4218a1a'
 bcrypt = Bcrypt()
-login_manager = LoginManager()
-login_manager.init_app(app)
 
 mongo = PyMongo(app)
 
@@ -28,8 +26,8 @@ def home():
     """Displays the 4 most recently added recipes in the collection"""
     recently_added = mongo.db.recipes.find().limit(4).sort('date_updated', -1)
     """Display the 4 most liked recipes in the collection"""
-    most_likes = mongo.db.recipes.find().limit(4).sort('likes_count', -1)
-    return render_template('index.html', recently_added=recently_added, most_likes=most_likes)
+    most_viewed = mongo.db.recipes.find().limit(4).sort('views_count', -1)
+    return render_template('index.html', recently_added=recently_added, most_viewed=most_viewed)
 
 
 @app.route('/get_recipes')
@@ -48,6 +46,7 @@ def create_recipe():
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     new_recipe = {
+        'user_email': session['email'],
         'title': request.form.get('title'),
         'summary': request.form.get('summary'),
         'ingredients': request.form.get('ingredients'),
@@ -57,7 +56,7 @@ def insert_recipe():
         'cooking_time': request.form.get('cooking_time'),
         'total_time': request.form.get('total_time'),
         'tags': request.form.get('tags'),
-        'likes_count': 0,
+        'views_count': 0,
         'date_updated': datetime.datetime.utcnow()
     }
     mongo.db.recipes.insert_one(new_recipe)
@@ -66,26 +65,33 @@ def insert_recipe():
 
 @app.route('/show_recipe/<recipe_id>')
 def show_recipe(recipe_id):
-    selected_recipe=mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    selected_recipe=mongo.db.recipes.find_one_and_update({'_id': ObjectId(recipe_id)},
+                                                            {'$inc': {'views_count': 1}})
     return render_template("showrecipe.html", recipes=selected_recipe)
 
 
 @app.route('/find_recipes', methods=['GET', 'POST'])
 def find_recipes():
     search_query = request.form.get('search_word')
-    mongo.db.recipes.create_index([('title', 'text'), ('summary', 'text'), ('ingredients', 'text')], name="recipes_index")
+    if request.form.get('total_time') == "":
+        total_time = 0
+    else:
+        total_time = request.form.get('total_time')
+    mongo.db.recipes.drop_index('recipes_index')
+    mongo.db.recipes.create_index([('title', 'text'), ('summary', 'text'), ('ingredients', 'text'), ('tags', 'text')], name="recipes_index")
     results = mongo.db.recipes.find({"$text": {"$search": search_query}},
                                     {'score': {'$meta': "textScore"}}
                                     ).sort([('score', {'$meta': 'textScore'})])
-    return render_template("reciperesults.html", recipes=results)
+    return render_template("reciperesults.html", recipes=results, total_time=total_time)
 
 
 @app.route('/my_recipes', methods=['GET'])
-@login_required
 #Need to add a validation class here to confirm if a user is logged in
 def my_recipes():
     #Need to add the key:value into the find() method for user_id
-    my_recipes=mongo.db.recipes.find({'user_id': 'testuser'})
+    #if 'email' in session:
+    #    user_id = session['_id']
+    my_recipes=mongo.db.recipes.find()
     return render_template("myrecipes.html", recipes=my_recipes)
 
 
@@ -101,7 +107,6 @@ def update_recipe(recipes_id):
         '_id': ObjectId(recipes_id),
         }, {
             '$set': {
-                'user_id': "testuser",
                 'title': request.form.get('title'),
                 'summary': request.form.get('summary'),
                 'ingredients': request.form.get('ingredients'),
