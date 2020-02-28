@@ -35,9 +35,10 @@ def get_recipes():
     page = 1
     per_page = 5
     total_results = mongo.db.recipes.count_documents({})
+    page_range = total_results / per_page
     recipes = mongo.db.recipes.find().limit(per_page).skip((page * per_page)-per_page)
     return render_template("recipes.html", 
-                           recipes=recipes, total=total_results, page=page)
+                           recipes=recipes, total=total_results, page=page, page_range=page_range)
 
 
 @app.route('/create_recipe')
