@@ -47,10 +47,6 @@
 
     </div>
 
-        <h2>Total: {{ total }}</h2>
-        <h2>Max Page: {{ max_page }}
-        <h2>Page Range: {{ page_range }}</h2>
-
         <div class="page-numbers-container col-md-12">
         {% for n in page_range %}
             <div class="page-numbers"><a href="{{url_for('get_recipes', page=n)}}">{{ n }}</a></div>
