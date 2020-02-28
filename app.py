@@ -34,7 +34,7 @@ def home():
 @app.route('/get_recipes')
 def get_recipes():
     page = request.args.get('page', default=1, type=int)
-    per_page = 5
+    per_page = 10
     total_results = mongo.db.recipes.count_documents({})
     max_page = math.ceil((total_results) / per_page)
     page_range = range(1, ((max_page)+1))
@@ -89,7 +89,13 @@ def find_recipes():
     results = mongo.db.recipes.find({"$text": {"$search": search_query}},
                                     {'score': {'$meta': "textScore"}}
                                     ).sort([('score', {'$meta': 'textScore'})])
-    return render_template("reciperesults.html", recipes=recipes, total_time=total_time)
+    page = request.args.get('page', default=1, type=int)
+    per_page = 10
+    total_results = results.count()
+    max_page = math.ceil((total_results) / per_page)
+    page_range = range(1, ((max_page)+1))
+    recipes = results.limit(per_page).skip((page * per_page)-per_page)
+    return render_template("reciperesults.html", recipes=recipes, total_time=total_time, total_results=total_results, page_range=page_range, page=page)
 
 
 @app.route('/my_recipes', methods=['GET'])
