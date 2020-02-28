@@ -52,9 +52,9 @@ def insert_recipe():
         'ingredients': request.form.get('ingredients'),
         'method': request.form.get('method'),
         'image': request.form.get('image'),
-        'prep_time': request.form.get('prep_time'),
-        'cooking_time': request.form.get('cooking_time'),
-        'total_time': request.form.get('total_time'),
+        'prep_time': request.form.get('prep_time', type=int),
+        'cooking_time': request.form.get('cooking_time', type=int),
+        'total_time': request.form.get('total_time', type=int),
         'tags': request.form.get('tags'),
         'views_count': 0,
         'date_updated': datetime.datetime.utcnow()
@@ -76,7 +76,7 @@ def find_recipes():
     if request.form.get('total_time') == "":
         total_time = 0
     else:
-        total_time = request.form.get('total_time')
+        total_time = request.form.get('total_time', type=int)
     mongo.db.recipes.drop_index('recipes_index')
     mongo.db.recipes.create_index([('title', 'text'), ('summary', 'text'), ('ingredients', 'text'), ('tags', 'text')], name="recipes_index")
     results = mongo.db.recipes.find({"$text": {"$search": search_query}},
@@ -112,9 +112,9 @@ def update_recipe(recipes_id):
                 'ingredients': request.form.get('ingredients'),
                 'method': request.form.get('method'),
                 'image': request.form.get('image'),
-                'prep_time': request.form.get('prep_time'),
-                'cooking_time': request.form.get('cooking_time'),
-                'total_time': request.form.get('total_time'),
+                'prep_time': request.form.get('prep_time', type=int),
+                'cooking_time': request.form.get('cooking_time', type=int),
+                'total_time': request.form.get('total_time', type=int),
                 'tags': request.form.get('tags'),
                 'date_updated': datetime.datetime.utcnow()
             }
