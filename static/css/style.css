@@ -51,6 +51,22 @@ h2 {
     font-style: bold;
 }
 
+.page-numbers-container {
+    display: block;
+    position: relative;
+    text-align: center;
+}
+
+.page-numbers {
+    display: inline-block;
+    background-color: #56A3A6;
+    color: white;
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+}
+
 /*---------Home-------------*/
 
 .welcome {
