@@ -33,7 +33,7 @@ def home():
 
 @app.route('/get_recipes')
 def get_recipes():
-    page = 1
+    page = request.args.get('page', default=1, type=int)
     per_page = 5
     total_results = mongo.db.recipes.count_documents({})
     max_page = math.ceil((total_results) / per_page)
