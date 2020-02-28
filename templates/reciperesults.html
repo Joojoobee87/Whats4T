@@ -20,10 +20,18 @@
         </form>
     </div>
 
-    {% if recipes %}
+    {% if recipes is none %}
 
-    <h2>Here are the results to match your search...</h2>
+    <h2>Sorry we couldn't find what you are looking for...</h2>
 
+    {% else %}
+
+    {% for n in page_range %}
+
+        <h2>Here are {{ total_results }} results to match your search...</h2>
+
+    {% endfor %}
+    
     <div class="row">
 
         {% for recipe in recipes %}
@@ -49,13 +57,16 @@
 
         {% endfor %}
 
-    {% else %}
-
-    <h2>Sorry we couldn't find what you are looking for...</h2>
-
     {% endif %}
 
     </div>
+
+    <div class="page-numbers-container col-md-12">
+    {% for n in page_range %}
+            <div class="page-numbers"><a href="{{url_for('get_recipes', page=n)}}">{{ n }}</a></div>
+    {% endfor %}
+    </div>
+
 </div>
 
 
