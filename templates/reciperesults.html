@@ -26,12 +26,8 @@
 
     {% else %}
 
-    {% for n in page_range %}
+    <h2>Here are {{ total_results }} results to match your search...</h2>
 
-        <h2>Here are {{ total_results }} results to match your search...</h2>
-
-    {% endfor %}
-    
     <div class="row">
 
         {% for recipe in recipes %}
