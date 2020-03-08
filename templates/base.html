@@ -30,9 +30,8 @@
                     My Recipes
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url_for('my_recipes') }}">View My Recipes</a>
-                    <a class="dropdown-item" href="{{ url_for('create_recipe') }}">Create a Recipe</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="nav-link dropdown-item" href="{{ url_for('my_recipes') }}">View My Recipes</a>
+                    <a class="nav-link dropdown-item" href="{{ url_for('create_recipe') }}">Create a Recipe</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -41,6 +40,9 @@
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login') }}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('register') }}">Register</a>
                 </li>
                 {% endif %}
             </ul>
@@ -68,10 +70,6 @@
 							class="fab fa-facebook-square"></a>
 						<a href="https://twitter.com/JoBroomfield3" target="_blank" class="fab fa-twitter-square"></a>
 						<a href="https://www.instagram.com/joojoobee87/" target="_blank" class="fab fa-instagram"></a>
-					</div>
-					<div class="footer-links">
-						<a href="privacy.html">Privacy</a>|
-						<a href="terms.html">Terms & Conditions</a>
 					</div>
 					<div class="copyright"><i class="far fa-copyright"></i><span>JooJooBee 2019</span></div>
 				</div>
