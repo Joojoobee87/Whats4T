@@ -5,7 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 from os import path
-from pymongo import ReturnDocument, IndexModel, ASCENDING, DESCENDING
+from pymongo import ReturnDocument, IndexModel
 from forms import RegistrationForm, LoginForm
 import datetime
 import math
@@ -35,7 +35,7 @@ def home():
 def get_recipes():
     page = request.args.get('page', default=1, type=int)
     per_page = 10
-    total_results = mongo.db.recipes.count_documents({})
+    total_results = mongo.db.recipes.count({})
     max_page = math.ceil((total_results) / per_page)
     page_range = range(1, ((max_page)+1))
     recipes = mongo.db.recipes.find().limit(per_page).skip((page * per_page)-per_page)
@@ -77,14 +77,9 @@ def show_recipe(recipe_id):
     return render_template("showrecipe.html", recipes=selected_recipe)
 
 
-@app.route('/find_recipes', methods=['GET', 'POST'])
-def find_recipes():
+@app.route('/find_recipes_by_keywords', methods=['GET', 'POST'])
+def find_recipes_by_keywords():
     search_query = request.form.get('search_word')
-    if request.form.get('total_time') == "":
-        total_time = 0
-    else:
-        total_time = request.form.get('total_time', type=int)
-    mongo.db.recipes.drop_index('recipes_index')
     mongo.db.recipes.create_index([('title', 'text'), ('summary', 'text'), ('ingredients', 'text'), ('tags', 'text')], name="recipes_index")
     results = mongo.db.recipes.find({"$text": {"$search": search_query}},
                                     {'score': {'$meta': "textScore"}}
@@ -95,7 +90,21 @@ def find_recipes():
     max_page = math.ceil((total_results) / per_page)
     page_range = range(1, ((max_page)+1))
     recipes = results.limit(per_page).skip((page * per_page)-per_page)
-    return render_template("reciperesults.html", recipes=recipes, total_time=total_time, total_results=total_results, page_range=page_range, page=page)
+    return render_template("reciperesults.html", recipes=recipes, total_results=total_results, page_range=page_range, page=page, search_query=search_query)
+
+
+@app.route('/find_recipes_by_total_time', methods=['GET', 'POST'])
+def find_recipes_by_total_time():
+    search_total_time = request.form.get('search_total_time', type=int)
+    results = mongo.db.recipes.find({"total_time": {"$lte": search_total_time}}
+                                    ).sort('total_time', 1)
+    page = request.args.get('page', default=1, type=int)
+    per_page = 10
+    total_results = results.count()
+    max_page = math.ceil((total_results) / per_page)
+    page_range = range(1, ((max_page)+1))
+    recipes = results.limit(per_page).skip((page * per_page)-per_page)
+    return render_template("reciperesults.html", recipes=recipes, total_results=total_results, page_range=page_range, page=page)
 
 
 @app.route('/my_recipes', methods=['GET'])
@@ -104,8 +113,14 @@ def my_recipes():
     #Need to add the key:value into the find() method for user_id
     #if 'email' in session:
     #    user_id = session['_id']
-    my_recipes=mongo.db.recipes.find()
-    return render_template("myrecipes.html", recipes=my_recipes)
+    my_recipes=mongo.db.recipes.find({'user_email': session['email']})
+    page = request.args.get('page', default=1, type=int)
+    per_page = 10
+    total_results = my_recipes.count()
+    max_page = math.ceil((total_results) / per_page)
+    page_range = range(1, ((max_page)+1))
+    recipes = my_recipes.limit(per_page).skip((page * per_page)-per_page)
+    return render_template("myrecipes.html", recipes=recipes, page=page, page_range=page_range)
 
 
 @app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
