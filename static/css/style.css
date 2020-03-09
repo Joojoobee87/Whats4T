@@ -1,16 +1,10 @@
+/*----------------General Body-------------*/
+
 body {
     font-family: 'Catamaran', sans-serif;
     background-image: url("static/images/backgroundimage.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
-
-.navbar {
-    position: fixed;
-    top: 0;
-    z-index: 1;
-    width: 100%;
-    height: 80px;
 }
 
 .alert {
@@ -19,7 +13,8 @@ body {
 
 .ingredients {
     white-space: pre-wrap;
-    background-color: red;
+    text-indent: 0% !important;
+    text-align: top;
 }
 
 .background-image {
@@ -69,17 +64,47 @@ h2 {
     margin-right: 3px;
 }
 
-/*---------Home-------------*/
+/*-------------------Home------------------*/
 
 .welcome {
     padding-top: 30px;
 }
 
-.row {
+/*-------------------Navigation------------*/
 
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 80px;
+    color: white !important;
+    background-color: #56A3A6 !important;
 }
 
-/*---------Footer----------*/
+.navbar-brand,
+.nav-item,
+.nav-link,
+.navbar-toggler-icon,
+.collapsed,
+.navbar-toggler,
+.show {
+    padding-left: 10px;
+    background-color: #56A3A6 !important;
+    color: white !important;
+}
+
+.dropdown-menu {
+    border: none;
+    background-color: #56A3A6;
+    color: white;
+}
+
+.fa-utensils {
+    padding-right: 10px;
+}
+
+/*-------------------Footer-----------------*/
 
 footer {
     display: block;
@@ -150,7 +175,7 @@ footer {
     text-decoration: none;
 }
 
-/* show recipe page */
+/*----------------show recipe page-------------*/
 
 .show-recipe-container {
     display: block;
@@ -375,4 +400,20 @@ a:hover {
     font-family: 'Catamaran', sans-serif;
     color: #56A3A6 !important;
     background-color: white !important;
+}
+
+/*------------Responsive Design----------------*/
+
+@media only screen and (min-device-width: 0px) and (max-device-width: 767px) {
+
+    .nav-link {
+        background-color: white !important;
+    }
+}
+
+@media only screen and (min-device-width: 0px) and (max-device-width: 991px) {
+
+    .navbar-brand {
+        font-size: 32px;
+    }
 }
