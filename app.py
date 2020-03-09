@@ -15,7 +15,7 @@ if path.exists("env.py"):
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get('MONGODB_NAME')
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
-app.secret_key = '1ee8825fe32fcc5a03559086d4218a1a'
+app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
 bcrypt = Bcrypt()
 
 mongo = PyMongo(app)
@@ -121,14 +121,13 @@ def find_recipes_by_keywords():
 @app.route('/find_recipes_by_total_time', methods=['GET', 'POST'])
 def find_recipes_by_total_time():
     """If the request method is POST, the value of the search_query variable will be taken 
-        from the search_word form field"""
+        from the search_total_time form field"""
     if request.method == 'POST':
-        search_total_time = request.form.get('search_word')
-    """If the request method is GET, the value of the search_query variable will be passed 
+        search_total_time = int(request.form.get('search_total_time'))
+    """If the request method is GET, the value of the search_total_time variable will be passed 
         back in to the route on reciperesults.html"""
     if request.method == 'GET':
-        search_total_time = request.args['query']
-    search_total_time = request.form.get('search_total_time', type=int)
+        search_total_time = int(request.args['query'])
     results = mongo.db.recipes.find({"total_time": {"$lte": search_total_time}}
                                     ).sort('total_time', 1)
     """Pagination has been added to the recipe results to show a maximum of 10 results per page
@@ -140,7 +139,7 @@ def find_recipes_by_total_time():
     page_range = range(1, ((max_page)+1))
     recipes = results.limit(per_page).skip((page * per_page)-per_page)
     return render_template("reciperesults.html", recipes=recipes, total_results=total_results, 
-                            page_range=page_range, page=page)
+                            page_range=page_range, page=page, search_total_time=search_total_time)
 
 
 @app.route('/my_recipes', methods=['GET'])
