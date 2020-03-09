@@ -23,35 +23,42 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    """Home page"""
-    """Displays the 4 most recently added recipes in the collection"""
+    """Displays the 4 most recently added recipes in the collection
+        The recipes are sorted with the most recently added/updated appearing first"""
     recently_added = mongo.db.recipes.find().limit(4).sort('date_updated', -1)
-    """Display the 4 most liked recipes in the collection"""
+    """Display the 4 most viewed recipes in the collection
+        The recipes are sorted with the most viewed recipes appearing first"""
     most_viewed = mongo.db.recipes.find().limit(4).sort('views_count', -1)
     return render_template('index.html', recently_added=recently_added, most_viewed=most_viewed)
 
 
-@app.route('/get_recipes')
-def get_recipes():
+@app.route('/browse_recipes')
+def browse_recipes():
+    """The browse_recipes route finds all recipes in the recipes collection.
+        Pagination has been added to display a maximum of 10 results per page
+        Number buttons are displayed for user to navigate between results on different pages"""
     page = request.args.get('page', default=1, type=int)
     per_page = 10
     total_results = mongo.db.recipes.count({})
     max_page = math.ceil((total_results) / per_page)
     page_range = range(1, ((max_page)+1))
     recipes = mongo.db.recipes.find().limit(per_page).skip((page * per_page)-per_page)
-    return render_template("recipes.html", 
-                           recipes=recipes, total=total_results, page=page, page_range=page_range, max_page=max_page)
+    return render_template("recipes.html", recipes=recipes, total=total_results, page=page, 
+                            page_range=page_range, max_page=max_page)
 
 
 @app.route('/create_recipe')
 def create_recipe():
-    return render_template("createrecipe.html", 
-                            title="Create Recipe",
-                            recipes=mongo.db.recipes.find())
+    """The create_recipe route allows the user to create a new recipe to add to the collection.
+        On submit, the form is posted to the url_for('insert_recipe') which in turn adds the new
+        recipe to the recipes collection in the database"""
+    return render_template("createrecipe.html", title="Create Recipe", recipes=mongo.db.recipes.find())
 
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
+    """On submit of the form, the values from the form are inserted into the relevant fields 
+        within the recipes collection in the database"""
     new_recipe = {
         'user_email': session['email'],
         'title': request.form.get('title'),
@@ -72,6 +79,9 @@ def insert_recipe():
 
 @app.route('/show_recipe/<recipe_id>')
 def show_recipe(recipe_id):
+    """When a recipe is viewed, all of the recipe details are displayed to the user
+        The function then increments the views_count field of the selected recipe 
+        by 1, increasing the overall views count"""
     selected_recipe=mongo.db.recipes.find_one_and_update({'_id': ObjectId(recipe_id)},
                                                             {'$inc': {'views_count': 1}})
     return render_template("showrecipe.html", recipes=selected_recipe)
@@ -79,41 +89,69 @@ def show_recipe(recipe_id):
 
 @app.route('/find_recipes_by_keywords', methods=['GET', 'POST'])
 def find_recipes_by_keywords():
-    search_query = request.form.get('search_word')
-    mongo.db.recipes.create_index([('title', 'text'), ('summary', 'text'), ('ingredients', 'text'), ('tags', 'text')], name="recipes_index")
+    """If the request method is POST, the value of the search_query variable will be taken 
+        from the search_word form field"""
+    if request.method == 'POST':
+        search_query = request.form.get('search_word')
+    """If the request method is GET, the value of the search_query variable will be passed 
+        back in to the route on reciperesults.html"""
+    if request.method == 'GET':
+        search_query = request.args['query']
+    """The function creates an index on the title, summary, ingredients and tags fields in the database.
+       The find method searches the indexed fields using the search_query variable and scores them. 
+       The text score signifies how well the document matched the search term or terms.
+       The results are then ordered according to their text score, with the most relevant displayed first"""
+    mongo.db.recipes.create_index([('title', 'text'), ('summary', 'text'), ('ingredients', 'text'), 
+                                    ('tags', 'text')], name="recipes_index")
     results = mongo.db.recipes.find({"$text": {"$search": search_query}},
                                     {'score': {'$meta': "textScore"}}
                                     ).sort([('score', {'$meta': 'textScore'})])
+    """Pagination has been added to the recipe results to show a maximum of 10 results per page
+        Numbers buttons are displayed for user to navigate between results on different pages"""
     page = request.args.get('page', default=1, type=int)
     per_page = 10
     total_results = results.count()
     max_page = math.ceil((total_results) / per_page)
     page_range = range(1, ((max_page)+1))
     recipes = results.limit(per_page).skip((page * per_page)-per_page)
-    return render_template("reciperesults.html", recipes=recipes, total_results=total_results, page_range=page_range, page=page, search_query=search_query)
+    return render_template("reciperesults.html", recipes=recipes, total_results=total_results, 
+                            page_range=page_range, page=page, search_query=search_query)
 
 
 @app.route('/find_recipes_by_total_time', methods=['GET', 'POST'])
 def find_recipes_by_total_time():
+    """If the request method is POST, the value of the search_query variable will be taken 
+        from the search_word form field"""
+    if request.method == 'POST':
+        search_total_time = request.form.get('search_word')
+    """If the request method is GET, the value of the search_query variable will be passed 
+        back in to the route on reciperesults.html"""
+    if request.method == 'GET':
+        search_total_time = request.args['query']
     search_total_time = request.form.get('search_total_time', type=int)
     results = mongo.db.recipes.find({"total_time": {"$lte": search_total_time}}
                                     ).sort('total_time', 1)
+    """Pagination has been added to the recipe results to show a maximum of 10 results per page
+        Numbers buttons are displayed for user to navigate between results on different pages"""
     page = request.args.get('page', default=1, type=int)
     per_page = 10
     total_results = results.count()
     max_page = math.ceil((total_results) / per_page)
     page_range = range(1, ((max_page)+1))
     recipes = results.limit(per_page).skip((page * per_page)-per_page)
-    return render_template("reciperesults.html", recipes=recipes, total_results=total_results, page_range=page_range, page=page)
+    return render_template("reciperesults.html", recipes=recipes, total_results=total_results, 
+                            page_range=page_range, page=page)
 
 
 @app.route('/my_recipes', methods=['GET'])
-#Need to add a validation class here to confirm if a user is logged in
 def my_recipes():
-    #Need to add the key:value into the find() method for user_id
-    #if 'email' in session:
-    #    user_id = session['_id']
+    """The my_recipes route is only displayed to users who are logged in.
+        The find method searches the recipes collection and returns results where the 
+        user_email field is equal to the value of the session email. Users logged in 
+        will see any recipes that have been added by them"""
     my_recipes=mongo.db.recipes.find({'user_email': session['email']})
+    """Pagination has been added to the recipe results to show a maximum of 10 results per page
+        Numbers buttons are displayed for user to navigate between results on different pages"""
     page = request.args.get('page', default=1, type=int)
     per_page = 10
     total_results = my_recipes.count()
@@ -125,12 +163,17 @@ def my_recipes():
 
 @app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
 def edit_recipe(recipe_id):
+    """The edit_recipe route takes the user to the selected recipe where they are then 
+        able to edit the information contained within the database"""
     selected_recipe=mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     return render_template("editrecipe.html", recipes=selected_recipe)
 
 
 @app.route('/update_recipe/<recipes_id>', methods=['GET', 'POST'])
 def update_recipe(recipes_id):
+    """The update_recipe route takes the updated information from the form fields 
+    and updates the recipes collection in the database
+        The user is then returned to the My Recipes page"""
     mongo.db.recipes.update_one({
         '_id': ObjectId(recipes_id),
         }, {
@@ -152,6 +195,8 @@ def update_recipe(recipes_id):
 
 @app.route('/delete_recipe/<recipe_id>', methods=['GET', 'POST'])
 def delete_recipe(recipe_id):
+    """The delete_recipe route takes the _id value of the selected recipe and deletes it from the recipes collection in the database
+        The user is then returned to the My Recipes page"""
     selected_recipe=mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
     recipes=mongo.db.recipes.find()
     return render_template("myrecipes.html", recipes=recipes)
@@ -189,7 +234,7 @@ def login():
 def register():
     form = RegistrationForm()
 
-    """If form is validate on submit, check if an existing user"""
+    """If form is validated on submit, check if an existing user"""
     if form.validate_on_submit():
         existing = mongo.db.users.find_one({'email': request.form.get('email')})
         """If not an existing user, create a new user in the database"""
@@ -206,6 +251,7 @@ def register():
             session['logged_in'] = True
             flash(f'Account created for {form.username.data}!', 'success')
             return redirect(url_for('home'))
+
         """If existing user, redirect to login page to enter existing details"""
         flash(f'Email address already in use. Please login to your account.', 'danger')
         return redirect(url_for('login'))
