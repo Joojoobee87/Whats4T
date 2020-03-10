@@ -289,8 +289,8 @@ footer {
 .browse-recipe {
     display: block;
     position: relative;
+    margin: 15px;
     padding: 0px;
-    margin: 15px 40px;
     overflow: hidden;
     float: left;
     clear: both;
@@ -416,4 +416,6 @@ a:hover {
     .navbar-brand {
         font-size: 32px;
     }
+
+
 }
