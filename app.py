@@ -42,7 +42,7 @@ def browse_recipes():
     total_results = mongo.db.recipes.count({})
     max_page = math.ceil((total_results) / per_page)
     page_range = range(1, ((max_page)+1))
-    recipes = mongo.db.recipes.find().limit(per_page).skip((page * per_page)-per_page)
+    recipes = mongo.db.recipes.find().sort('date_updated', -1).limit(per_page).skip((page * per_page)-per_page)
     return render_template("recipes.html", recipes=recipes, total=total_results, page=page, 
                             page_range=page_range, max_page=max_page)
 
