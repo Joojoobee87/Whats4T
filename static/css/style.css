@@ -11,12 +11,6 @@ body {
     margin: 0px 20px;
 }
 
-.ingredients {
-    white-space: pre-wrap;
-    text-indent: 0% !important;
-    text-align: top;
-}
-
 .background-image {
     display: block;
     position: fixed;
@@ -221,7 +215,10 @@ footer {
 
 .recipe-method {
     white-space: pre-wrap;
-    font-size: 16px !important;
+}
+
+.recipe-ingredients {
+    white-space: pre-line;
 }
 
 .icon-label {
