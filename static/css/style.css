@@ -85,10 +85,9 @@ h2 {
 .navbar-brand,
 .nav-item,
 .nav-link,
+a.nav-link,
 .navbar-toggler-icon,
-.collapsed,
-.navbar-toggler,
-.show {
+.navbar-toggler {
     padding-left: 10px;
     background-color: #56A3A6 !important;
     color: white !important;
@@ -96,8 +95,8 @@ h2 {
 
 .dropdown-menu {
     border: none;
-    background-color: #56A3A6;
-    color: white;
+    background-color: #56A3A6 !important;
+    color: white !important;
 }
 
 .fa-utensils {
@@ -404,11 +403,60 @@ a:hover {
 
 /*------------Responsive Design----------------*/
 
-@media only screen and (min-device-width: 0px) and (max-device-width: 767px) {
+@media only screen and (min-device-width: 0px) and (max-device-width: 574px) {
+
+    .container {
+        max-width: 90%;
+        padding: 0px 0px 20px 0px;
+    }
 
     .nav-link {
         background-color: white !important;
     }
+
+    p, li {
+        font-size: 18px !important;
+    }
+
+    .h3 {
+        font-size: 24px;
+    }
+
+    .h2 {
+        font-size: 32px;
+    }
+
+    .form-control {
+        font-size: 12px;
+    }
+
+    .show-recipe-summary {
+        padding: 0px;
+    }
+
+    .recipe-image {
+        max-height: 240px;
+    }
+}
+
+@media only screen and (min-device-width: 575px) and (max-device-width: 767px) {
+
+    .nav-link {
+        background-color: white !important;
+    }
+
+    p, li {
+        font-size: 24px !important;
+    }
+
+    h3 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 38px;
+    }
+
 }
 
 @media only screen and (min-device-width: 0px) and (max-device-width: 991px) {
