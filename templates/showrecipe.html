@@ -4,7 +4,7 @@
 
 <div class="container show-recipe-container">
 
-    <div class="row show-recipe justify-content-md-center">
+    <div class="row show-recipe justify-content-center">
         <div class="col-md-5 col-lg-5 show-recipe-image">
             <img class="recipe-image show-recipe-image" src="{{ recipes.image }}" alt="recipe image">
                 <div class="icon-box-inset col-xs-12">
@@ -27,8 +27,8 @@
             <p>{{ recipes.summary }}</p>
         </div>
     </div>
-    <div class="row justify-content-md-center">
-    <div class="col-md-10 col-lg-10 accordion" id="accordionExample">
+    <div class="row justify-content-center">
+    <div class="col-md-10 accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
             <h2 class="mb-0">
@@ -38,7 +38,7 @@
             </h2>
             </div>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body ingredients">
+                <div class="card-body">
                     <p class="recipe-ingredients">{{ recipes.ingredients }}<p>
                 </div>
             </div>
@@ -59,19 +59,16 @@
     </div>
     </div>
 </div>
-<div class="row justify-content-md-center">
-    <div class="col-md-10 col-lg-10 advert-container">
-        <div class="row advert-row">
-            <div class="col-md-8 col-lg-8 advert-column">
-                <img src="https://s7e3a.scene7.com/is/image/LakelandCamel/ovenmate-hero?$1250$" alt="advertising" class="advert-image">
-                <div class="col-lg-6 col-md-6 advert-text">
-                    <h2>Restore your house to order this spring</h2>
-                    <span><a href="https://www.lakeland.co.uk/around-the-home/cleaning-products/">Shop all cleaning</a></span>
-                </div>
+    <div class="row justify-content-center">
+        <div class="col-xs-6 col-md-10 advert">
+            <img src="https://s7e3a.scene7.com/is/image/LakelandCamel/ovenmate-hero?$1250$" alt="advertising" class="advert-image">
+            <div class="advert-text">
+                <h1>Lakeland</h1>
+                <h4>Restore your house to order this spring</h2>
+                <span><a href="https://www.lakeland.co.uk/around-the-home/cleaning-products/" class="advert-link">Shop all cleaning</a></span>
             </div>
         </div>
     </div>
-</div>
 
 </div>
 
