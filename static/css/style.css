@@ -103,7 +103,7 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 200px;
+    height: 150px;
     background-color: #56A3A6;
 }
 
@@ -459,6 +459,10 @@ a:hover {
 
     .navbar-brand {
         font-size: 32px;
+    }
+
+    .footer-container {
+        padding: 20px 0px;
     }
 }
 
