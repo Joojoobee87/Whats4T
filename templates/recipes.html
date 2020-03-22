@@ -16,7 +16,7 @@
     <div class="search-box row">
         <div class="col-md-6">
             <form action="{{url_for('find_recipes_by_keywords')}}" method="POST">
-                <input name="search_word" id="search_word" class="form-control" type="text" placeholder="Search for recipes using keywords i.e. vegetarian, pesto, cheese">
+                <input name="search_word" id="search_word" class="form-control" type="text" placeholder="Search for recipes using keywords i.e. vegetarian, pasta">
                 <button class="search btn" type="submit">Search</button>
             </form>
         </div>
@@ -32,19 +32,19 @@
 
         {% for recipe in recipes %}
 
-        <div class="col-md-5 col-lg-5 browse-recipe">
+        <div class="col-xs-12 col-md-5 col-lg-5 browse-recipe">
             <div class="col-md-12 col-lg-12 browse-recipe-column"> 
                 <img class="recipe-image" src="{{ recipe.image }}" alt="recipe image">
-                <div class="browse-recipe-inset col-md-10 col-lg-10">
-                    <div class="col-md-12 col-lg-12">
+                <div class="browse-recipe-inset col-xs-6 col-md-10">
+                    <div class="col-md-12">
                         <h3 class="browse-recipe-title">{{ recipe.title }}</h2>
                         <p class="browse-recipe-summary">{{ recipe.summary }}</p>
                     </div>
-                    <div class="col-md-12 col-lg-12">
-                        <i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipe.total_time }} mins</span>
-                        <i class="far fa-thumbs-up"></i><span class="icon-label">Views:</span><span class="icon-content">{{ recipe.views_count }}</span>
+                    <div class="col-md-12">
+                        <div><i class="fas fa-clock"></i><span class="icon-label">Total:</span><span class="icon-content">{{ recipe.total_time }} mins</span></div>
+                        <div><i class="far fa-thumbs-up"></i><span class="icon-label">Views:</span><span class="icon-content">{{ recipe.views_count }}</span></div>
                     </div>
-                    <div class="col-md-12 col-lg-12 view-details-container">
+                    <div class="col-md-12 view-details-container">
                         <button class="btn" type="submit"><a href="{{url_for('show_recipe', recipe_id=recipe._id)}}">View recipe</a></button>
                     </div>
                 </div>
