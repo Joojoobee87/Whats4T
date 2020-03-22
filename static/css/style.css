@@ -385,10 +385,10 @@ a:hover {
 .edit-recipe-image {
     width: 320px;
     height: 240px;
+    max-width: 100%;
     border-radius: 15px;
     padding-bottom: 10px;
 }
-
 
 /*-----------Login-------------*/
 
@@ -405,6 +405,17 @@ a:hover {
 }
 
 /*------------Responsive Design----------------*/
+
+@media only screen and (min-device-width: 0px) and (max-device-width: 320px) {
+
+    .form-control {
+        font-size: 12px !important;
+    }
+
+    .form-label {
+        font-size: 14px !important;
+    }
+}
 
 @media only screen and (min-device-width: 0px) and (max-device-width: 480px) {
 
