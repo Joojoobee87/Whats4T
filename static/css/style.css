@@ -407,7 +407,7 @@ a:hover {
 
     .container {
         max-width: 90%;
-        padding: 0px 0px 20px 0px;
+        padding: 20px 0px;
     }
 
     .nav-link {
@@ -426,6 +426,10 @@ a:hover {
         font-size: 32px;
     }
 
+    .h1 {
+        font-size: 36px;
+    }
+
     .form-control {
         font-size: 12px;
     }
@@ -434,8 +438,20 @@ a:hover {
         padding: 0px;
     }
 
-    .recipe-image {
+    .show-recipe-image {
         max-height: 240px;
+    }
+
+    .browse-recipe-container {
+        padding: 0px;
+    }
+
+    .my-recipes-container {
+        padding: 0px;
+    }
+
+    .welcome {
+        padding: 0px;
     }
 }
 
