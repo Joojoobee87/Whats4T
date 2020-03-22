@@ -255,12 +255,6 @@ footer {
 .advert-container {
     display: block;
     position: relative;
-    padding: 50px;
-}
-
-.advert-column {
-    text-align: center;
-    padding: 0px;
 }
 
 .advert-image {
@@ -268,14 +262,22 @@ footer {
 }
 
 .advert-text {
-    display: block;
     position: absolute;
+    max-width: 200px;
+    padding: 25px;
+    top: 0;
+    left: 0;
+    color: #56A3A6;
+}
+
+.advert {
+    display: block;
+    position: relative;
     padding: 15px;
-    background-color: #56A3A6;
-    opacity: 0.5;
-    top: 8px;
-    left: 8px;
-    z-index: 1;
+}
+
+.advert-link {
+    color: #56A3A6 !important;
 }
 
 /*----------Browse Recipes ----------*/
@@ -474,6 +476,11 @@ a:hover {
 
     a.nav-link {
         font-size: 18px;
+    }
+
+    .advert-text {
+        max-width: 300px;
+        padding: 50px;
     }
 
 }
