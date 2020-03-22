@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container my-recipes-container">
+<div class="container">
 
 <h2>My Recipes</h2>
 
@@ -11,7 +11,7 @@
 {% for recipe in recipes %}
     {% if session.email == recipe.user_email %}
 
-    <div class="row my-recipes justify-content-md-center">
+    <div class="row my-recipes justify-content-center">
         <div class="col-md-4 my-recipes-image-container">
             <img class="my-recipes-image" src="{{ recipe.image }}" alt="recipe image">
         </div>
