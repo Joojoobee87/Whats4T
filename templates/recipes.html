@@ -1,7 +1,7 @@
 {% extends 'base.html'%} 
 {% block content %}
 
-<div class="container browse-recipe-container">
+<div class="container">
 
     <div class="welcome">
         <h2>Looking for something?</h2>
@@ -32,8 +32,8 @@
 
         {% for recipe in recipes %}
 
-        <div class="col-xs-12 col-md-5 col-lg-5 browse-recipe">
-            <div class="col-md-12 col-lg-12 browse-recipe-column"> 
+        <div class="col-xs-12 col-md-5 browse-recipe">
+            <div class="col-md-12 browse-recipe-column"> 
                 <img class="recipe-image" src="{{ recipe.image }}" alt="recipe image">
                 <div class="browse-recipe-inset col-xs-6 col-md-10">
                     <div class="col-md-12">
