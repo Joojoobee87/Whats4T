@@ -248,6 +248,11 @@ footer {
     color: #56A3A6;
 }
 
+.recipe-accordion-button {
+    text-decoration: none !important;
+    color: #ffffff !important;
+}
+
 
 /* -------- Advertising space ----------*/
 
@@ -403,7 +408,7 @@ a:hover {
 
 /*------------Responsive Design----------------*/
 
-@media only screen and (min-device-width: 0px) and (max-device-width: 574px) {
+@media only screen and (min-device-width: 0px) and (max-device-width: 767px) {
 
     .container {
         max-width: 90%;
@@ -453,33 +458,29 @@ a:hover {
     .welcome {
         padding: 0px;
     }
-}
-
-@media only screen and (min-device-width: 575px) and (max-device-width: 767px) {
-
-    .nav-link {
-        background-color: white !important;
-    }
-
-    p, li {
-        font-size: 24px !important;
-    }
-
-    h3 {
-        font-size: 32px;
-    }
-
-    h2 {
-        font-size: 38px;
-    }
-
-}
-
-@media only screen and (min-device-width: 0px) and (max-device-width: 991px) {
 
     .navbar-brand {
-        font-size: 32px;
+        font-size: 36px;
+    }
+}
+
+
+@media only screen and (min-device-width: 768px) {
+
+    .navbar-brand {
+        font-size: 40px;
     }
 
+    a.nav-link {
+        font-size: 18px;
+    }
 
+}
+
+
+@media only screen and (min-device-width: 565px) and (max-device-width: 767px) {
+
+    .container {
+        padding: 20px 40px;
+    }
 }
