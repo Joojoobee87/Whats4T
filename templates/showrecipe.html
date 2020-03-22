@@ -6,8 +6,8 @@
 
     <div class="row show-recipe justify-content-md-center">
         <div class="col-md-5 col-lg-5 show-recipe-image">
-            <img class="recipe-image" src="{{ recipes.image }}" alt="recipe image">
-                <div class="icon-box-inset col-md-4 col-lg-4">
+            <img class="recipe-image show-recipe-image" src="{{ recipes.image }}" alt="recipe image">
+                <div class="icon-box-inset col-xs-12">
                     <div class="show-recipe-icon">
                         <i class="inset-icons fas fa-user-clock"></i><span class="icon-label">Prep:</span><span class="icon-content">{{ recipes.prep_time }} mins</span>
                     </div>
@@ -37,11 +37,10 @@
                 </button>
             </h2>
             </div>
-
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-                {{ recipes.ingredients }}
-            </div>
+                <div class="card-body ingredients">
+                    <p class="recipe-ingredients">{{ recipes.ingredients }}<p>
+                </div>
             </div>
         </div>
         <div class="card">
