@@ -22,9 +22,8 @@ body {
     position: fixed;
     top: 0;
     z-index: -1;
-    width: 100%;
-    height: 100%;
-    background-attachment: fixed;
+    max-width: 100vw;
+    height: 100vh;
 }
 
 .page-container {
@@ -413,6 +412,11 @@ a:hover {
     .container {
         max-width: 90%;
         padding: 20px 0px;
+    }
+
+    .background-image {
+        max-width: 767px;
+        overflow: hidden;
     }
 
     .nav-link {
