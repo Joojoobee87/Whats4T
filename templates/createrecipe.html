@@ -2,53 +2,54 @@
 
 <div class="create-recipe-container">
 
-<h2>Got a new recipe you'd like to share?</h2>
+    <h2>Got a new recipe you'd like to share?</h2>
 
-<p>Add some text here about adding new recipes to the collection</p>
+    <p>Add details of your recipe in the relevant fields below.</p>
+    <p>You can update and remove your recipes from our database at any time via the 'Edit' link on the View My Recipes page</p>
 
-<form action="{{ url_for('insert_recipe') }}" method="POST">
-    <div class="form-group">
-    <label for="formGroupExampleInput2">Recipe Image</label>
-    <input name="image" id="image" type="text" class="form-control" placeholder="enter image url">
-    </div>
-    <div class="form-group">
-    <label for="formGroupExampleInput2">Recipe Title</label>
-    <input name="title" id="title" type="text" class="form-control" placeholder="Add your recipe title...">
-    </div>
-    <div class="form-group">
-    <label for="formGroupExampleInput2">Recipe Summary</label>
-    <textarea name="summary" id="summary" class="form-control" rows="3" maxlength="500" placeholder="Add a summary about your recipe...">{{ recipes.summary }}</textarea>
-    </div>
-    <div class="form-group">
-    <label for="exampleFormControlTextarea1">Ingredients</label>
-    <textarea name="ingredients" id="ingredients" class="form-control" rows="5" placeholder="Add your ingredients here..."></textarea>
-    </div>
-    <div class="form-group">
-    <label for="exampleFormControlTextarea1">Method</label>
-    <textarea name="method" id="method" class="form-control" rows="5" placeholder="Add your method here..."></textarea>
-    </div>
-    <div class="form-group">
-    <label for="formGroupExampleInput">Tags</label>
-    <input name="tags" id="tags" type="text" class="form-control" placeholder="Help other users find your recipe by adding keyword tags e.g. vegetarian, easy">
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <label for="formGroupExampleInput">Prep Time</label>
-            <input name="prep_time" type="number" class="form-control" placeholder="20">
+    <form action="{{ url_for('insert_recipe') }}" method="POST">
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Recipe Image</label>
+            <input name="image" id="image" type="text" class="form-control" placeholder="Enter image url...">
         </div>
-        <div class="col">
-            <label for="formGroupExampleInput">Cooking Time</label>
-            <input name="cooking_time" type="number" class="form-control" placeholder="60">
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Recipe Title</label>
+            <input name="title" id="title" type="text" class="form-control" placeholder="Add your recipe title...">
         </div>
-        <div class="col">
-            <label for="formGroupExampleInput">Total Time</label>
-            <input name="total_time" type="number" class="form-control" placeholder="80">
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Recipe Summary</label>
+            <textarea name="summary" id="summary" class="form-control" rows="3" maxlength="500" placeholder="Add a summary about your recipe...">{{ recipes.summary }}</textarea>
         </div>
-    </div>
-    <div class="form-row">
-        <button class="submit btn btn-success" type="submit">Add Recipe</button>
-    </div>
-</form>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Ingredients</label>
+            <textarea name="ingredients" id="ingredients" class="form-control" rows="5" placeholder="Add your ingredients here..."></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Method</label>
+            <textarea name="method" id="method" class="form-control" rows="5" placeholder="Add your method here..."></textarea>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Tags</label>
+            <input name="tags" id="tags" type="text" class="form-control" placeholder="Help other users find your recipe by adding keyword tags e.g. vegetarian, easy">
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="formGroupExampleInput">Prep Time</label>
+                <input name="prep_time" type="number" class="form-control" placeholder="20">
+            </div>
+            <div class="col">
+                <label for="formGroupExampleInput">Cooking Time</label>
+                <input name="cooking_time" type="number" class="form-control" placeholder="60">
+            </div>
+            <div class="col">
+                <label for="formGroupExampleInput">Total Time</label>
+                <input name="total_time" type="number" class="form-control" placeholder="80">
+            </div>
+        </div>
+        <div class="form-row">
+            <button class="submit btn btn-success" type="submit">Add Recipe</button>
+        </div>
+    </form>
 
 </div>
     {% endblock %}
