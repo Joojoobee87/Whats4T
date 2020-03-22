@@ -12,13 +12,13 @@
     {% if session.email == recipe.user_email %}
 
     <div class="row my-recipes justify-content-md-center">
-        <div class="col-md-4 col-lg-4 my-recipes-image-container">
+        <div class="col-md-4 my-recipes-image-container">
             <img class="my-recipes-image" src="{{ recipe.image }}" alt="recipe image">
         </div>
-        <div class="col-md-8 col-lg-8 my-recipes-content">
+        <div class="col-md-8 my-recipes-content">
             <h2 class="my-recipes-title">{{recipe.title}}</h2>
             <p>{{ recipe.summary }}</p>
-            <div class="col-md-12 col-lg-12 my-recipes-actions">
+            <div class="col-md-12 my-recipes-actions">
                 <button class="btn" type="submit"><a href="{{url_for('show_recipe', recipe_id=recipe._id)}}">View</a></button>
                 <button class="btn" type="submit"><a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">Edit</a></button>
             </div>
@@ -29,6 +29,12 @@
     {% endif %}
 
 {% endfor %}
+
+    <div class="page-numbers-container col-md-12">
+    {% for n in page_range %}
+            <div class="page-numbers"><a href="{{url_for('my_recipes', page=n)}}">{{ n }}</a></div>
+    {% endfor %}
+    </div>
 
 </div>
 
