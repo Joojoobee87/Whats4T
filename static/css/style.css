@@ -263,7 +263,7 @@ footer {
 
 .advert-text {
     position: absolute;
-    max-width: 200px;
+    max-width: 220px;
     padding: 25px;
     top: 0;
     left: 0;
@@ -406,7 +406,53 @@ a:hover {
 
 /*------------Responsive Design----------------*/
 
-@media only screen and (min-device-width: 0px) and (max-device-width: 767px) {
+@media only screen and (min-device-width: 0px) and (max-device-width: 480px) {
+
+    .container {
+        padding: 20px 10px;
+    }
+
+    .welcome {
+        padding: 0px;
+    }
+
+    .my-recipes-image-container {
+        padding-right: 25px;
+    }
+
+    p, li {
+        font-size: 16px !important;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .advert-text {
+        max-width: 300px;
+        padding: 15px;
+    }
+
+    .background-image {
+        max-width: 767px;
+        overflow: hidden;
+    }
+
+    .navbar-brand {
+        font-size: 32px;
+    }
+}
+
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 767px) {
 
     .container {
         max-width: 90%;
@@ -426,15 +472,15 @@ a:hover {
         font-size: 18px !important;
     }
 
-    .h3 {
+    h3 {
         font-size: 24px;
     }
 
-    .h2 {
+    h2 {
         font-size: 32px;
     }
 
-    .h1 {
+    h1 {
         font-size: 36px;
     }
 
@@ -465,10 +511,18 @@ a:hover {
     .navbar-brand {
         font-size: 36px;
     }
+
+    .advert-text {
+        padding: 15px;
+    }
 }
 
 
 @media only screen and (min-device-width: 768px) {
+
+    .container {
+        padding-top: 20px;
+    }
 
     .navbar-brand {
         font-size: 40px;
@@ -489,6 +543,6 @@ a:hover {
 @media only screen and (min-device-width: 565px) and (max-device-width: 767px) {
 
     .container {
-        padding: 20px 40px;
+        padding: 20px 30px;
     }
 }
