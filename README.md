@@ -6,4 +6,4 @@ A [link](documentation/Whats4T.pdf "Whats4T Balsamiq Wireframes")
 
 Colour pallet:
 ![Alt][1]
-[1]: /static/images/Whats4T_colours.jpg "Whats4T? colour pallet"
+[1]: static/images/Whats4T_colours.jpg "Whats4T? colour pallet"
