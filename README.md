@@ -7,24 +7,24 @@ The website is aimed at a diverse demographic of users, essentially anyone who w
 ### User stories
 As a user, I want to:
 
-	Browse a full list of recipes to gain inspiration for new dishes
-	View popular recipes including ingredients and method
-	Create and add new recipes to the collection
-	Search the full collection of recipes using keywords or specific ingredients
-	Search the full collection for recipes with a maximum combined prep and cooking time (total time)
-	Update recipes I have added to the collection
-	Remove recipes I no longer want to make available to other users
-	View a full list of recipes I have added to the collection
-	View reviews and comments made by other users who have tried and tested recipe*
-	Save recipes to my profile to access at a later date*
+- Browse a full list of recipes to gain inspiration for new dishes
+- View popular recipes including ingredients and method
+- Create and add new recipes to the collection
+- Search the full collection of recipes using keywords or specific ingredients
+- Search the full collection for recipes with a maximum combined prep and cooking time (total time)
+- Update recipes I have added to the collection
+- Remove recipes I no longer want to make available to other users
+- View a full list of recipes I have added to the collection
+- View reviews and comments made by other users who have tried and tested recipe*
+- Save recipes to my profile to access at a later date*
 
 As a website owner, I want to:
 
-	Offer advertising space on website to attract advertisers and increase revenue stream
+- Offer advertising space on website to attract advertisers and increase revenue stream
 
 As an advertiser, I want to:
 
-	Place adverts on website to attract users to my website, product etc
+- Place adverts on website to attract users to my website, product etc
 
 **These user stories were ruled out of the initial project scope due to time constraints however are features that could be implemented with further development time*
 ### Wireframes 
@@ -36,58 +36,58 @@ A [link](documentation/Whats4T.pdf "Whats4T Balsamiq Wireframes")
 ## Features
 ### Existing Features
 ### General features
-	**Navigation bar** – the navbar assists the user with ease of navigation around the site. Where users are not logged in, there will be a ‘login’ and ‘register’ nav link to the respective pages. Where users are logged in, they will be presented with an additional My Recipes nav link which will drop down to reveal additional navigation items to view recipes in their collection and create new recipes. There will also be the option to logout which will terminate their session
-	**Footer** – the footer hosts font awesome icons for the user to navigate out to the respective social media platform. 
+- **Navigation bar** – the navbar assists the user with ease of navigation around the site. Where users are not logged in, there will be a ‘login’ and ‘register’ nav link to the respective pages. Where users are logged in, they will be presented with an additional My Recipes nav link which will drop down to reveal additional navigation items to view recipes in their collection and create new recipes. There will also be the option to logout which will terminate their session
+- **Footer** – the footer hosts font awesome icons for the user to navigate out to the respective social media platform. 
 
 ### Whats4T Homepage (index.html)
 
-	**Welcome and summary** - The initial landing page is the entry point for users to the site and provides them with a welcome message as an introduction to the site and a brief summary of what they are likely to find here.
+- **Welcome and summary** - The initial landing page is the entry point for users to the site and provides them with a welcome message as an introduction to the site and a brief summary of what they are likely to find here.
 
-	**Background image** – gives the site visual impact, attracting their attention initially with colours and colourful raw ingredients.
+- **Background image** – gives the site visual impact, attracting their attention initially with colours and colourful raw ingredients.
 
-	**Recently Added section** – displays to the user the 4 most recently added recipes to the database, for regular usersto the site, this will give them an indication as to whether any new recipes have been added since their last visit.
-	**Most Viewed section** – displays to the user the 4 most viewed recipes in the database, so the user can quickly establish what could be some of the more popular recipes to view
+- **Recently Added section** – displays to the user the 4 most recently added recipes to the database, for regular usersto the site, this will give them an indication as to whether any new recipes have been added since their last visit.
+- **Most Viewed section** – displays to the user the 4 most viewed recipes in the database, so the user can quickly establish what could be some of the more popular recipes to view
 
 ### Browse (recipes.html)
 
-	**Browse all recipes** – the Browse page allows the user to browse through the entire collection of recipes available in the database. The results are displayed 10 per page and pagination buttons are present at the bottom of the page to allow the user to navigate between pages of results
-	**Search functionality** – there are two search fields which are displayed at the top of the page
+- **Browse all recipes** – the Browse page allows the user to browse through the entire collection of recipes available in the database. The results are displayed 10 per page and pagination buttons are present at the bottom of the page to allow the user to navigate between pages of results
+- **Search functionality** – there are two search fields which are displayed at the top of the page
 **Keywords** – this search field allows a user to search for keywords such as recipe ingredients or perhaps tags such as vegetarian. Results are displayed to the user in order of how closely they match the search criteria entered
 **Total Time** – this search field allows a user to search for recipes with a maximum total time in minutes. Results are displayed to the user up to and including the total time entered and are ordered ascending from shortest to longest time
 
 ### Recipe (showrecipe.html)
 
-	**View selected recipe** – the user is redirected to this page when they click on the ‘view’ button inset within any of the recipe results displayed. This could be via the homepage, browse page or view my recipes. The user is presented with full details of the recipe including image, title, summary, ingredients, method, tags, views and time values
+- **View selected recipe** – the user is redirected to this page when they click on the ‘view’ button inset within any of the recipe results displayed. This could be via the homepage, browse page or view my recipes. The user is presented with full details of the recipe including image, title, summary, ingredients, method, tags, views and time values
 
 ### Create a recipe (createrecipe.html)
 
-	**Create recipe form** – the user is presented with a blank template in which to enter their recipe details. The form is clearly labelled and provides the user with some placeholder text on the type content required for each.
-	**Add Recipe** – the add recipe button will allow the user to submit their new recipe to the database which then returns to user to the View My Recipes page and displays the new recipe
+- **Create recipe form** – the user is presented with a blank template in which to enter their recipe details. The form is clearly labelled and provides the user with some placeholder text on the type content required for each.
+- **Add Recipe** – the add recipe button will allow the user to submit their new recipe to the database which then returns to user to the View My Recipes page and displays the new recipe
 
 ### My Recipes (myrecipes.html)
 
-	**My Recipes** – the user is presented with all of the recipes they have added to the database, presented with the image, title and summary detail
-	**View** – the user can click the view button to view full details of their recipe (see above showrecipe.html)
-	**Edit** – the user can click the edit button which redirects them to the Update Recipe page where they can edit any of the fields held against the selected recipe in the database (see editrecipe.html below). 
+- **My Recipes** – the user is presented with all of the recipes they have added to the database, presented with the image, title and summary detail
+- **View** – the user can click the view button to view full details of their recipe (see above showrecipe.html)
+- **Edit** – the user can click the edit button which redirects them to the Update Recipe page where they can edit any of the fields held against the selected recipe in the database (see editrecipe.html below). 
 
 ### Edit recipe (editrecipe.html) 
 
-	**Edit recipe form** – details of the selected recipe are displayed to the user in the same format as the create recipe form. 
-	**Update button** – allows the user to submit the amended recipe details to the database, they are then returned to the My Recipes page
-	**Back** – allows the user to return to the My Recipes page without making any amendments to the recipe
-	**Delete** – allows the user to delete the selected recipe. On click, the user is redirected to a modal box which asks for confirmation that they wish to delete. 
-	**Confirmation modal** - Selecting Yes deletes the recipe and returns the user to the My Recipes page. Selecting ‘No’ returns the user to the Edit Recipe page.
+- **Edit recipe form** – details of the selected recipe are displayed to the user in the same format as the create recipe form. 
+- **Update button** – allows the user to submit the amended recipe details to the database, they are then returned to the My Recipes page
+- **Back** – allows the user to return to the My Recipes page without making any amendments to the recipe
+- **Delete** – allows the user to delete the selected recipe. On click, the user is redirected to a modal box which asks for confirmation that they wish to delete. 
+- **Confirmation modal** - Selecting Yes deletes the recipe and returns the user to the My Recipes page. Selecting ‘No’ returns the user to the Edit Recipe page.
 
 ### Register (register.html)
 
-	**Registration form** – allows the user to be able to register their details and gain access to additional functionality on the site including creating and sharing their own recipes with other users
+- **Registration form** – allows the user to be able to register their details and gain access to additional functionality on the site including creating and sharing their own recipes with other users
 
 ### Login (login.html)
 
-	**Login form** - allows the user to be able to login using their registered details to access additional functionality including creating and sharing their own recipes with users as well as updating and deleting recipes they have already contributed.
+- **Login form** - allows the user to be able to login using their registered details to access additional functionality including creating and sharing their own recipes with users as well as updating and deleting recipes they have already contributed.
 ### Features left to implement
-	Recipe (reviews) – ability for users to add reviews to the recipes they have tried out, which in turn would then be available to other users viewing the recipe
-	Saved recipes – ability for users to save recipes they have viewed to a list from the collection which they can access at a later date when logged in
+- Recipe (reviews) – ability for users to add reviews to the recipes they have tried out, which in turn would then be available to other users viewing the recipe
+- Saved recipes – ability for users to save recipes they have viewed to a list from the collection which they can access at a later date when logged in
 
 ## UX Design
 I am a designer by nature and have a keen interest in how things look and appear so I strive to design and develop sites that I would enjoy viewing and interacting with myself. I use technology a lot in my daily life including websites and applications both personal and work based so I understand the importance of UX Design and the impacts of not getting it right.
@@ -143,18 +143,18 @@ The social media icons have been included in the footer in a linear format with 
 
 ## Technology
 In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
-	HTML
-	CSS
-	Python
-	Flask framework
-	Flask Login
-	WTForms library
-	Jinja template
-	MongoDB
-	Bootstrap
-	Font Awesome
-	Coolors (https://coolors.co/)
-	Google Fonts
+- HTML
+- CSS
+- Python
+- Flask framework
+- Flask Login
+- WTForms library
+- Jinja template
+- MongoDB
+- Bootstrap
+- Font Awesome
+- Coolors (https://coolors.co/)
+- Google Fonts
 
 ## Testing
 I created a testing framework in excel with specific testing scripts and scenarios to test out on each of the pages / functions included throughout the project. The framework included the page / function being tested, the test carried out and the expected result.
