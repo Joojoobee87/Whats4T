@@ -2,7 +2,6 @@
 
 body {
     font-family: 'Catamaran', sans-serif;
-    background-image: url("static/images/backgroundimage.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -16,8 +15,10 @@ body {
     position: fixed;
     top: 0;
     z-index: -1;
-    width: 100%;
+    max-width: 100vw;
     height: 100vh;
+    overflow: hidden;
+    object-fit: cover;
 }
 
 .page-container {
@@ -413,11 +414,6 @@ a:hover {
         padding: 15px;
     }
 
-    .background-image {
-        max-width: 767px;
-        overflow: hidden;
-    }
-
     .navbar-brand {
         font-size: 32px;
     }
@@ -432,11 +428,6 @@ a:hover {
     .container {
         max-width: 90%;
         padding: 20px 0px;
-    }
-
-    .background-image {
-        max-width: 767px;
-        overflow: hidden;
     }
 
     .nav-link {
