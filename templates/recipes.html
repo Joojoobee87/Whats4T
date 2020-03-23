@@ -16,13 +16,13 @@
     <div class="search-box row">
         <div class="col-md-6">
             <form action="{{url_for('find_recipes_by_keywords')}}" method="POST">
-                <input name="search_word" id="search_word" class="form-control" type="text" placeholder="Search for recipes using keywords i.e. vegetarian, pasta">
+                <input name="search_word" id="search_word" class="form-control" type="text" placeholder="Search for recipes using keywords i.e. pasta">
                 <button class="search btn" type="submit">Search</button>
             </form>
         </div>
         <div class="col-md-6">
             <form action="{{url_for('find_recipes_by_total_time')}}" method="POST">
-                <input name="search_total_time" id="search_total_time" class="form-control" type="number" placeholder="Search for recipes with a maximum time for prep and cooking">
+                <input name="search_total_time" id="search_total_time" class="form-control" type="number" placeholder="Search for recipes with a maximum time">
                 <button class="search btn" type="submit">Search</button>
             </form>
         </div>
