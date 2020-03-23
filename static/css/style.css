@@ -15,9 +15,8 @@ body {
     position: fixed;
     top: 0;
     z-index: -1;
-    max-width: 100vw;
+    width: 100%;
     height: 100vh;
-    overflow: hidden;
     object-fit: cover;
 }
 
@@ -360,7 +359,7 @@ a:hover {
 .login-container {
     display: block;
     position: relative;
-    min-height: 600px;
+    min-height: 650px;
     padding: 20px;
 }
 
