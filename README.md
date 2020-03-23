@@ -1,5 +1,6 @@
 # Whats4T?
 Whats4T? is a website which hosts a collection of recipes created and maintained by its registered users. Inspiration for this site came from my own experiences as a mother who enjoys cooking tasty yet healthy dishes for my family at mealtimes. I regularly battle with the question of what to make for tea, particularly when time is of the essence due to work, school runs and extra-curricular activities and consequently tend to stick to my tried and tested repertoire of recipes. I wanted to develop a site that would give users quick access to a host of ‘teatime’ recipes, where users could browse key words based on ingredients in their store cupboard, enabling them to expand their repertoire and provide something new and different for them to try out.
+
 The original and adapted brief for this milestone project can be found [here](documentation/MS3_Project_Idea_1.docx "Original Project Brief 1")
 
 ## UX Design
@@ -30,8 +31,7 @@ As an advertiser, I want to:
 ### Wireframes 
 Wireframes for the project were drafted on the Balsamiq Wireframes application.
 
-The wireframes and notes to accompany them can be accessed here:
-A [link](documentation/Whats4T.pdf "Whats4T Balsamiq Wireframes")
+The wireframes and notes to accompany them can be accessed [here](documentation/Whats4T.pdf "Whats4T Balsamiq Wireframes")
 
 ## Features
 ### Existing Features
@@ -158,8 +158,10 @@ In this section, you should mention all of the languages, frameworks, libraries,
 
 ## Testing
 I created a testing framework in excel with specific testing scripts and scenarios to test out on each of the pages / functions included throughout the project. The framework included the page / function being tested, the test carried out and the expected result.
+
 The project was designed to be responsive, adapting structure and formatting according to the user’s device. Consequently, testing needed to be carried out on a variety of different sized devices as well as on different browsers to ensure that the pages and functionality responded as expected across a range of different technologies.
 Where tests failed, the relevant alterations were made to the code, changes saved and committed and the test was repeated to ensure it responded correctly.
+
 A link to the Milestone 3 Testing excel can be found [here](documentation/MS3_Testing.xlsx "Milestone 3 Testing – Whats4T?")
 
 
