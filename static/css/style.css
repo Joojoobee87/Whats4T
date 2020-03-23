@@ -117,21 +117,6 @@ footer {
     padding: 30px 0px;
 }
 
-.footer-links {
-    display: block;
-    position: relative;
-    width: 100%;
-    font-family: 'Nunito', sans-serif;
-    text-decoration: none;
-    color: #ffffff;
-    padding: 10px 0px;
-}
-
-.footer-container a:hover {
-    color: #4F756B;
-    text-decoration: none;
-}
-
 .footer-container a {
     padding: 0 20px;
     color: #ffffff;
@@ -160,11 +145,6 @@ footer {
 .social-media a {
     font-size: 36px;
     padding: 0px 20px;
-}
-
-.social-media a:hover {
-    color: #4F756B;
-    text-decoration: none;
 }
 
 /*----------------show recipe page-------------*/
@@ -251,11 +231,6 @@ footer {
 
 
 /* -------- Advertising space ----------*/
-
-.advert-container {
-    display: block;
-    position: relative;
-}
 
 .advert-image {
     max-width: 100%;
@@ -354,10 +329,6 @@ a:hover {
 
 /*---------My Recipes----------*/
 
-.my-recipes-container {
-    padding: 20px;
-}
-
 .my-recipes-image-container {
     width: 100%;
 }
@@ -370,17 +341,7 @@ a:hover {
     border-radius: 15px;
 }
 
-/*----------Create Recipe------------*/
-
-.create-recipe-container {
-    padding: 40px;
-}
-
 /*-----------Edit Recipe-----------*/
-
-.edit-recipe-container {
-    padding: 40px;
-}
 
 .edit-recipe-image {
     width: 320px;
@@ -466,7 +427,6 @@ a:hover {
     }
 }
 
-
 @media only screen and (min-device-width: 481px) and (max-device-width: 767px) {
 
     .container {
@@ -532,7 +492,6 @@ a:hover {
     }
 }
 
-
 @media only screen and (min-device-width: 768px) {
 
     .container {
@@ -553,7 +512,6 @@ a:hover {
     }
 
 }
-
 
 @media only screen and (min-device-width: 565px) and (max-device-width: 767px) {
 
