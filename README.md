@@ -1,7 +1,7 @@
 # Whats4T?
 Whats4T? is a website which hosts a collection of recipes created and maintained by its registered users. Inspiration for this site came from my own experiences as a mother who enjoys cooking tasty yet healthy dishes for my family at mealtimes. I regularly battle with the question of what to make for tea, particularly when time is of the essence due to work, school runs and extra-curricular activities and consequently tend to stick to my tried and tested repertoire of recipes. I wanted to develop a site that would give users quick access to a host of ‘teatime’ recipes, where users could browse key words based on ingredients in their store cupboard, enabling them to expand their repertoire and provide something new and different for them to try out.
 
-The original and adapted brief for this milestone project can be found [here](documentation/MS3_Project_Idea_1.docx "Original Project Brief 1")
+The original and adapted brief for this milestone project can be found [here](documentation/MS3_Project_Idea_1.pdf "Original Project Brief 1")
 
 ## UX Design
 The website is aimed at a diverse demographic of users, essentially anyone who wants inspiration for daily meal times and who wants to find some new dishes to try out. Users can range from people visiting the site ad hoc to search and view recipes, to people who want to be more actively involved by contributing to the collection already available. 
@@ -142,7 +142,7 @@ The social media icons have been included in the footer in a linear format with 
 
 
 ## Technology
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+The following are languages, frameworks, libraries, and tools I have used to construct this project. 
 - HTML
 - CSS
 - Python
@@ -180,7 +180,7 @@ Login functionality has been implemented to allow for encryption of passwords, t
 The MONGO_URI and SECRET_KEY environment variables have been added to the env.py which in turns has been added to the .gitignore file to ensure no visibility of this data
 
 **Heroku**
-Heroku has been used to deploy the application. Steps taken to deploy the code can be found [here](documentation/Heroku_Deployment.docx "Heroku Deployment")
+Heroku has been used to deploy the application. Steps taken to deploy the code can be found [here](documentation/Heroku_Deployment.pdf "Heroku Deployment")
 ## Credits
 ### Content
 **Bootstrap** has been utilised extensively throughout the site including navigation, forms, modals and responsive design
