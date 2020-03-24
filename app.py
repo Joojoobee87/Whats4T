@@ -1,17 +1,12 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, flash, session
-from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from flask_bcrypt import Bcrypt
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
-from os import path
-from pymongo import ReturnDocument, IndexModel
 from forms import RegistrationForm, LoginForm
 import datetime
 import math
-if path.exists("env.py"):
-    import env
-    
+
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get('MONGODB_NAME')
 app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
@@ -74,7 +69,7 @@ def insert_recipe():
         'date_updated': datetime.datetime.utcnow()
     }
     mongo.db.recipes.insert_one(new_recipe)
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('browse_recipes'))
 
 
 @app.route('/show_recipe/<recipe_id>')
@@ -262,4 +257,4 @@ def logout():
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=False)
+            debug=True)
