@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_bcrypt import Bcrypt
-from flask_pymongo import PyMongo, pymongo
+from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from forms import RegistrationForm, LoginForm
 import datetime
