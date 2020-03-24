@@ -33,7 +33,7 @@
                         <div><i class="far fa-thumbs-up"></i><span class="icon-label">Views:</span><span class="icon-content">{{ add.views_count }}</span></div>
                     </div>
                     <div class="col-md-12 view-details-container">
-                        <button class="btn" type="submit"><a href="{{url_for('show_recipe', recipe_id=add._id)}}">View recipe</a></button>
+                        <button class="btn" type="submit">{{url_for('show_recipe', recipe_id=add._id)}}View recipe</button>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                         <div><i class="far fa-thumbs-up"></i><span class="icon-label">Views:</span><span class="icon-content">{{ view.views_count }}</span></div>
                     </div>
                     <div class="col-md-12 view-details-container">
-                        <button class="btn" type="submit"><a href="{{url_for('show_recipe', recipe_id=view._id)}}">View recipe</a></button>
+                        <button class="btn" type="submit">{{url_for('show_recipe', recipe_id=view._id)}}View recipe</button>
                     </div>
                 </div>
             </div>
