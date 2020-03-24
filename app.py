@@ -69,7 +69,7 @@ def insert_recipe():
         'date_updated': datetime.datetime.utcnow()
     }
     mongo.db.recipes.insert_one(new_recipe)
-    return redirect(url_for('browse_recipes'))
+    return redirect(url_for('my_recipes'))
 
 
 @app.route('/show_recipe/<recipe_id>')
