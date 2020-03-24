@@ -171,8 +171,8 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipes_id>', methods=['GET', 'POST'])
 def update_recipe(recipes_id):
     """The update_recipe route takes the updated information from the form fields 
-    and updates the recipes collection in the database
-        The user is then returned to the My Recipes page"""
+       and updates the recipes collection in the database
+       The user is then returned to the My Recipes page"""
     mongo.db.recipes.update_one({
         '_id': ObjectId(recipes_id),
         }, {
@@ -194,8 +194,9 @@ def update_recipe(recipes_id):
 
 @app.route('/delete_recipe/<recipe_id>', methods=['GET', 'POST'])
 def delete_recipe(recipe_id):
-    """The delete_recipe route takes the _id value of the selected recipe and deletes it from the recipes collection in the database
-        The user is then returned to the My Recipes page"""
+    """The delete_recipe route takes the _id value of the selected recipe and deletes it from the 
+       recipes collection in the database
+       The user is then returned to the My Recipes page"""
     selected_recipe=mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
     recipes=mongo.db.recipes.find()
     return render_template("myrecipes.html", recipes=recipes)
@@ -204,10 +205,8 @@ def delete_recipe(recipe_id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-
     if form.validate_on_submit():
         existing = mongo.db.users.find_one({'email': request.form.get('email')})
-        
         if existing:
             """Encrypt password of user"""
             """If an existing user email is present, check match on passwords"""
@@ -220,19 +219,16 @@ def login():
             else: 
                 flash(f'Sorry, this password is incorrect. Please retype', 'danger')
                 return redirect(url_for('login'))
-            
         if existing is None:
             """If not an existing user, redirect user to registration page"""
             flash(f'Sorry this email address does not exist. Please register to create an account', 'danger')
             return redirect(url_for('register'))
-
     return render_template('login.html', title='Log In', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-
     """If form is validated on submit, check if an existing user"""
     if form.validate_on_submit():
         existing = mongo.db.users.find_one({'email': request.form.get('email')})
@@ -250,11 +246,9 @@ def register():
             session['logged_in'] = True
             flash(f'Account created for {form.username.data}!', 'success')
             return redirect(url_for('home'))
-
         """If existing user, redirect to login page to enter existing details"""
         flash(f'Email address already in use. Please login to your account.', 'danger')
         return redirect(url_for('login'))
-
     return render_template('register.html', title='Register', form=form)
 
 
@@ -268,4 +262,4 @@ def logout():
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=False)
